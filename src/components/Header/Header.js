@@ -9,15 +9,18 @@ export class Header extends Component {
         super(props)
 
         this.containerRef = React.createRef();
-        this.handleResize = this.handleResize.bind(this)
+        this.handleResize = this.handleResize.bind(this);
+        this.windowScroll = this.windowScroll.bind(this)
         this.state = {
             didBurgerTrue: false,
             didBurgerPressed: false,
+            isScrollLocked: false,
         }
     }
 
     componentDidMount() {
         window.addEventListener('resize', this.handleResize);
+        window.addEventListener('scroll', this.windowScroll);
         this.handleResize();
     }
 
@@ -25,17 +28,41 @@ export class Header extends Component {
         if (this.containerRef.current) {
             const containerWidth = this.containerRef.current.offsetWidth;
             if (containerWidth <= 1200) {
-                this.setState({ didBurgerTrue: true });
+                this.setState((prevState) => ({
+                    didBurgerTrue: prevState.didBurgerTrue = true,
+                }));
             } else {
-                this.setState({ didBurgerTrue: false });
+                this.setState((prevState) => ({
+                    didBurgerTrue: prevState.didBurgerTrue = false,
+                }));
             }
         }
     }
 
+    windowScroll() {
+        this.setState((prevState) => ({
+            didBurgerPressed: prevState.didBurgerPressed = false,
+        }));
+    }
+
     burgerPressed = () => {
+        const containerWidth = this.containerRef.current.offsetWidth;
+
         this.setState((prevState) => ({
             didBurgerPressed: !prevState.didBurgerPressed,
         }));
+        if (containerWidth <= 768 && !this.state.isScrollLocked) {
+            document.body.style.overflow = 'hidden';
+            this.setState((prevState) => ({
+                isScrollLocked: prevState.isScrollLocked = true,
+            }));
+        }
+        else if (this.state.isScrollLocked) {
+            document.body.style.overflow = '';
+            this.setState((prevState) => ({
+                isScrollLocked: prevState.isScrollLocked = false,
+            }));
+        }
     };
 
     render() {

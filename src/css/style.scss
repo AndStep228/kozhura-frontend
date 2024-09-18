@@ -513,6 +513,10 @@ h1 {
 }
 
 @media(max-width: 580px) {
+    .main__promo {
+        max-height: 752px;
+    }
+
     .promo__block {
 
         h1 {
