@@ -1,18 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import MainPromo from './components/MainPage/MainPromo';
-import Header from './components/Header/Header';
+import React from "react";
+import MainPage from "./components/MainPage/MainPage";
 
 class App extends React.Component {
-    render() {
-        return (
-            <div className="wrapper">
-                <Header />
-                <MainPromo />
-            </div>
-
-        )
-    }
+  render() {
+    return (
+      <div className="wrapper">
+        <MainPage />
+      </div>
+    );
+  }
 }
 
-export default App
+export default App;

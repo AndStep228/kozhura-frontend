@@ -1,0 +1,148 @@
+.main__promo {
+  min-height: 100vh;
+  max-width: 100%;
+  color: white;
+
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+    url("../../public/img/main_promo.jpg") center bottom no-repeat;
+  background-size: cover;
+}
+
+.promo__wrapper {
+  padding: 140px 0 50px 0;
+  min-height: 100vh;
+  display: grid;
+  align-items: center;
+}
+
+.promo__block {
+  display: grid;
+  align-items: center;
+  height: max-content;
+  gap: 60px 50px;
+  grid-template-columns: repeat(3, minmax(auto, max-content));
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.promo__block {
+  h1 {
+    grid-column: 1 / -1;
+    align-self: flex-end;
+
+    max-width: 982px;
+  }
+}
+
+.promo__item {
+  grid-row: 2;
+  justify-self: left;
+  align-self: flex-start;
+
+  display: grid;
+  gap: 65px 0;
+
+  background: #fff;
+  padding: 30px 30px 65px 30px;
+  border-radius: 20px;
+  max-width: 450px;
+  height: max-content;
+}
+
+.promo__item {
+  .item__title {
+    @include gradientTxt();
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .item__subtitle {
+    color: #414141;
+    opacity: 80%;
+    font-weight: 500;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .promo__wrapper {
+    padding: 125px 0 50px 0;
+  }
+
+  .promo__block {
+    gap: 60px 30px;
+
+    h1 {
+      max-width: 731px;
+    }
+  }
+
+  .promo__item {
+    gap: 50px 0;
+    padding: 30px 30px 36px 30px;
+    max-width: 300px;
+
+    .item__title {
+      font-size: 24px;
+    }
+
+    .item__subtitle {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .promo__wrapper {
+    padding: 100px 0 25px 0;
+  }
+
+  .main__promo {
+    h1 {
+      max-width: 100%;
+    }
+  }
+
+  .promo__block {
+    height: max-content;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(auto, max-content));
+  }
+
+  .promo__items-list {
+    display: grid;
+    grid-auto-flow: row;
+    gap: 10px 0;
+  }
+
+  .promo__item {
+    grid-row: auto;
+    max-width: 100%;
+    align-self: flex-end;
+    gap: 20px;
+    padding: 30px 30px 36px 30px;
+  }
+}
+
+@media (max-width: 580px) {
+  .main__promo {
+    max-height: 827px;
+  }
+
+  .promo__block {
+    h1 {
+      max-width: 100%;
+    }
+  }
+
+  .promo__item {
+    padding: 15px 15px 20px 15px;
+
+    .item__title {
+      font-size: 16px;
+    }
+
+    .item__subtitle {
+      font-size: 14px;
+    }
+  }
+}

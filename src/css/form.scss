@@ -1,0 +1,124 @@
+.form__wrapper {
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+    url("../../public/img/form_bkg.jpg") center top no-repeat;
+  background-size: cover;
+  height: 631px;
+  max-height: max-content;
+}
+
+.form__block {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, max-content);
+  align-items: center;
+  gap: 50px;
+
+  height: 100%;
+}
+
+.form__txt {
+  display: grid;
+  gap: 30px;
+  max-width: 921px;
+  h1,
+  h5 {
+    color: white;
+  }
+}
+
+.form {
+  justify-self: flex-end;
+  display: grid;
+  gap: 15px;
+  width: 560px;
+
+  input {
+    width: 100%;
+    background: none;
+    color: white;
+    border-bottom: 2px solid white;
+    padding: 28px 40px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+.react-tel-input .form-control {
+  width: 100%;
+  background: none;
+  color: white;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid white;
+  padding: 28px 40px;
+  font-size: 24px;
+  font-weight: 500;
+  height: auto;
+}
+
+.react-tel-input .flag-dropdown {
+  background: none;
+  border: none;
+}
+
+.form__btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin: 25px 0 0 0;
+
+  button {
+    width: 100%;
+  }
+}
+
+.error {
+  color: red;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+@media (max-width: 1200px) {
+  .form__block {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  .form__wrapper {
+    padding: 50px 0;
+    height: auto;
+  }
+
+  .form__block {
+    gap: 100px;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(auto, max-content));
+  }
+}
+
+@media (max-width: 620px) {
+  .form__btns {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .form__block {
+    gap: 50px;
+  }
+
+  .form {
+    input {
+      font-size: 14px;
+      padding: 15px 24px;
+    }
+  }
+
+  .react-tel-input .form-control {
+    padding: 15px 40px;
+    font-size: 14px;
+  }
+}

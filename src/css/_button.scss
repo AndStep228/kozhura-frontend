@@ -1,0 +1,16 @@
+.button {
+    width: max-content;
+    height: max-content;
+    padding: 25px 45px;
+    background: $main-color;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 85%;
+    }
+}
