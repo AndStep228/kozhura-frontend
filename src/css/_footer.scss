@@ -1,0 +1,290 @@
+.footer {
+  min-height: 100vh;
+  position: relative;
+  background: #414141;
+  color: white;
+  padding: 100px 0 80px 0;
+
+  .page-title__line {
+    background: #fff;
+  }
+
+  .page__title {
+    color: #fff;
+  }
+}
+
+@media (min-width: 2560px) {
+  .footer {
+    min-height: 75vh;
+  }
+}
+
+.footer__wrapper {
+  display: grid;
+  align-items: center;
+  padding: 140px 0;
+}
+
+.footer__block {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 50px;
+}
+
+.footer__info {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 40px;
+
+  img {
+    max-width: 342px;
+    height: 92px;
+  }
+}
+
+.footer-nav {
+  display: grid;
+  gap: 10%;
+  grid-template-columns: repeat(3, minmax(auto, max-content));
+}
+
+.footer-nav__item {
+  width: max-content;
+  display: grid;
+  grid-auto-flow: row;
+  gap: 90px;
+  grid-template-columns: minmax(auto, max-content);
+}
+
+.info__links {
+  opacity: 80%;
+  width: max-content;
+  display: grid;
+  gap: 45px;
+  grid-template-columns: repeat(2, minmax(auto, max-content));
+}
+
+.info__items {
+  display: grid;
+  gap: 15px;
+}
+
+.info__item {
+  display: block;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 60%;
+  }
+}
+
+.info__link {
+  transition: all 0.3s ease;
+
+  img {
+    width: 61px;
+    height: 61px;
+  }
+
+  &:hover {
+    opacity: 60%;
+  }
+}
+
+.footer-nav__title {
+  @include gradientTxt();
+  text-transform: uppercase;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.footer-nav__link-block {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 30px;
+}
+
+.footer-nav__link {
+  font-size: 24px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    opacity: 60%;
+  }
+}
+
+.footer__faq {
+  width: 100%;
+  border-top: solid 1px #fff;
+  opacity: 20%;
+  height: 80px;
+  padding: 30px 0;
+  position: absolute;
+  bottom: 0;
+}
+
+.faq__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .faq__txt:last-child {
+    justify-self: flex-end;
+  }
+}
+
+.up-btn {
+  background: linear-gradient(94deg, #ff7a00, #ffa800);
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  position: absolute;
+  bottom: 100px;
+  right: 90px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 85%;
+  }
+}
+
+@media (max-width: 1285px) {
+  .footer__wrapper {
+    padding: 75px 0 110px 0;
+  }
+
+  .footer__block {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(auto, max-content));
+    gap: 100px;
+  }
+
+  .footer__info {
+    grid-template-columns: repeat(2, minmax(auto, max-content));
+  }
+
+  .footer-nav__item {
+    gap: 50px;
+  }
+
+  .info__links {
+    align-items: center;
+  }
+
+  .footer__info {
+    gap: 75px;
+    height: max-content;
+  }
+
+  .info__item {
+    height: max-content;
+  }
+
+  .info__items {
+    height: max-content;
+    grid-template-rows: repeat(2, minmax(auto, max-content));
+  }
+}
+
+@media (max-width: 1060px) {
+  //   .footer-nav {
+  //     grid-template-columns: repeat(2, minmax(auto, max-content));
+  //     grid-template-rows: repeat(2, minmax(auto, max-content));
+  //     gap: 50px;
+  //   }
+  .footer-nav__title {
+    font-size: clamp(16px, 2.8vw, 32px);
+  }
+  .footer-nav__link {
+    font-size: clamp(14px, 2vw, 24px);
+  }
+}
+
+@media (max-width: 830px) {
+  .footer__info {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-nav {
+    grid-template-columns: repeat(2, minmax(auto, max-content));
+    grid-template-rows: repeat(2, minmax(auto, max-content));
+    gap: 50px;
+  }
+
+  .footer-nav__link-block {
+    gap: 20px;
+  }
+
+  .footer__faq {
+    padding: 20px 0;
+  }
+
+  .faq__block {
+    grid-template-columns: 1fr 0.5fr;
+    align-items: center;
+  }
+
+  .faq__txt {
+    font-size: 10px;
+  }
+
+  .footer-nav__title {
+    font-size: clamp(16px, 4vw, 32px);
+  }
+  .footer-nav__link {
+    font-size: clamp(14px, 3vw, 24px);
+  }
+
+  .footer__wrapper {
+    padding: 75px 0 50px 0;
+  }
+
+  .up-btn {
+    bottom: 130px;
+    right: 15px;
+    width: 75px;
+    height: 75px;
+
+    img {
+      transform: scale(0.8);
+    }
+  }
+  .info__item {
+    font-size: clamp(16px, 3vw, 20px);
+  }
+}
+
+@media (max-width: 376px) {
+  .footer__info {
+    gap: 0;
+  }
+
+  .footer__block {
+    gap: 50px;
+  }
+
+  .footer-nav {
+    max-width: max-content;
+  }
+  .footer__logo {
+    width: 189px;
+    height: 51px;
+  }
+
+  .info__links {
+    gap: 20px;
+  }
+
+  .info__item {
+    font-size: 16px;
+  }
+}

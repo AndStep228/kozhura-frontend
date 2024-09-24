@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import PromoItem from "./PromoItem";
+import { motion } from "framer-motion";
 
 class MainPromo extends React.Component {
   constructor(props) {
@@ -35,9 +36,10 @@ class MainPromo extends React.Component {
 
   render() {
     const { mobileVersion } = this.state;
+
     if (!mobileVersion) {
       return (
-        <div className="main__promo">
+        <div id="promo" className="main__promo">
           <div ref={this.containerRef} className="container">
             <div className="promo__wrapper">
               <div className="promo__block">

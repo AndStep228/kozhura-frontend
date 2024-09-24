@@ -43,21 +43,21 @@
 }
 
 .react-tel-input .form-control {
-  width: 100%;
-  background: none;
-  color: white;
-  border: none;
-  border-radius: 0;
-  border-bottom: 2px solid white;
-  padding: 28px 40px;
-  font-size: 24px;
-  font-weight: 500;
-  height: auto;
+  width: 100% !important;
+  background: none !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid white !important;
+  padding: 28px 40px !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  height: auto !important;
 }
 
 .react-tel-input .flag-dropdown {
-  background: none;
-  border: none;
+  background: none !important;
+  border: none !important;
 }
 
 .form__btns {
@@ -118,7 +118,11 @@
   }
 
   .react-tel-input .form-control {
-    padding: 15px 40px;
+    padding: 15px 40px !important;
+    font-size: 14px !important;
+  }
+
+  .error {
     font-size: 14px;
   }
 }

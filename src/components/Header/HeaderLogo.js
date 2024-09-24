@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function HeaderLogo(props) {
-    return (
-        <img className='header__logo' src={props.Logo}></img>
-    )
+  return (
+    <Link to={props.LogoLink}>
+      <img className="header__logo" src={props.Logo}></img>
+    </Link>
+  );
 }

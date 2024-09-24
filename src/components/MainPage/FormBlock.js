@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import RegistrationForm from "./RegistrationForm";
+import RegistrationForm from "../RegistrationForm";
 
 export default class FormBlock extends Component {
   render() {

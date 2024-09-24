@@ -1,5 +1,12 @@
 $main-color: linear-gradient(94deg, #ff7a00, #ffa800);
 
+@mixin gradientTxt {
+  background: $main-color;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 *,
 *::before,
 *::after {
@@ -12,12 +19,6 @@ $main-color: linear-gradient(94deg, #ff7a00, #ffa800);
 a {
   text-decoration: none;
   color: inherit;
-}
-
-ul,
-ol,
-li {
-  list-style: none;
 }
 
 img {
@@ -114,16 +115,22 @@ body::-webkit-scrollbar-thumb {
   padding: 100px 0 0 0;
 }
 
-@mixin gradientTxt {
-  background: $main-color;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.about-main {
+  padding: 0 !important;
 }
 
 @media (max-width: 1200px) {
   .main {
     padding: 50px 0 0 0;
+  }
+}
+
+@media (max-width: 470px) {
+  .preloader__block {
+    padding: 0 15px;
+    img {
+      width: 100%;
+    }
   }
 }
 
@@ -133,3 +140,9 @@ body::-webkit-scrollbar-thumb {
 @import "partners";
 @import "page-title";
 @import "form";
+@import "footer";
+@import "about-promo";
+@import "company-about";
+@import "teach-programs";
+@import "about-kozhura";
+@import "our-team";
