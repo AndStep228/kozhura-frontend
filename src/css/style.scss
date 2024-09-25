@@ -56,6 +56,10 @@ h2 {
   font-size: clamp(24px, 3vw, 46px);
 }
 
+h3 {
+  font-size: clamp(16px, 2.6vw, 40px);
+}
+
 h5 {
   font-size: clamp(14px, 2.2vw, 24px);
 }
@@ -119,9 +123,27 @@ body::-webkit-scrollbar-thumb {
   padding: 0 !important;
 }
 
+.news-main {
+  padding: 100px 0 !important;
+}
+
+.library-main {
+  padding: 100px 0 !important;
+}
+
 @media (max-width: 1200px) {
   .main {
     padding: 50px 0 0 0;
+  }
+
+  .news-main {
+    padding: 50px 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .library-main {
+    padding: 50px 0 !important;
   }
 }
 
@@ -146,3 +168,6 @@ body::-webkit-scrollbar-thumb {
 @import "teach-programs";
 @import "about-kozhura";
 @import "our-team";
+@import "library";
+@import "news-block";
+@import "new-block";

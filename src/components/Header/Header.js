@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import ReactDOM from "react-dom/client";
+import { withRouter } from "../withRouter";
 import HeaderLink from "./HeaderLink";
 import HeaderLogo from "./HeaderLogo";
 import HeaderMenu from "./HeaderMenu";
@@ -14,7 +14,7 @@ export class Header extends Component {
     this.state = {
       didBurgerTrue: false,
       didBurgerPressed: false,
-      isScrollLocked: false,
+      falseBurger: false,
     };
   }
 
@@ -44,9 +44,6 @@ export class Header extends Component {
       didBurgerPressed: (prevState.didBurgerPressed = false),
     }));
     document.body.style.overflow = "";
-    this.setState((prevState) => ({
-      isScrollLocked: (prevState.isScrollLocked = false),
-    }));
   }
 
   burgerPressed = () => {
@@ -55,41 +52,52 @@ export class Header extends Component {
     this.setState((prevState) => ({
       didBurgerPressed: !prevState.didBurgerPressed,
     }));
-    if (containerWidth <= 768 && !this.state.isScrollLocked) {
+
+    if (containerWidth <= 768 && this.state.didBurgerPressed === false) {
       document.body.style.overflow = "hidden";
-      this.setState((prevState) => ({
-        isScrollLocked: (prevState.isScrollLocked = true),
-      }));
-    } else if (this.state.isScrollLocked) {
+    } else {
+      document.body.style.overflow = "";
+    }
+  };
+
+  headerClose = (event) => {
+    if (event.target !== event.currentTarget) {
       document.body.style.overflow = "";
       this.setState((prevState) => ({
-        isScrollLocked: (prevState.isScrollLocked = false),
-      }));
-    } else if (!this.state.isScrollLocked) {
-      document.body.style.overflow = "";
-      this.setState((prevState) => ({
-        isScrollLocked: (prevState.isScrollLocked = false),
+        didBurgerPressed: !prevState.didBurgerPressed,
       }));
     }
   };
 
   render() {
     const { didBurgerPressed } = this.state;
+    const { location } = this.props;
+
+    const headerClass =
+      location.pathname !== "/" && location.pathname !== "/about-us"
+        ? "header header-bkg" // Специальный класс для этой страницы
+        : "header";
 
     if (this.state.didBurgerTrue === false) {
       return (
-        <header className="header">
+        <header id="header" className={headerClass}>
           <div ref={this.containerRef} className="container">
             <div className="header__block">
               <HeaderLogo LogoLink="/" Logo="/img/kozhura_white.svg" />
               <div className="header-links">
                 <HeaderLink LinkTxt="О нас" Link="/about-us" />
-                <HeaderLink LinkTxt="Библиотека" Link="#" />
-                <HeaderLink LinkTxt="Новости" Link="#" />
+                <HeaderLink LinkTxt="Библиотека" Link="/library" />
+                <HeaderLink LinkTxt="Новости" Link="/news" />
               </div>
               <div className="header-ex-links">
                 <HeaderLink LinkTxt="Работодатель" Link="#" />
-                <HeaderLink LinkTxt="KOZHURA_BIM" Link="#" />
+                <a
+                  className="header-links__item"
+                  target="_blank"
+                  href="https://kozhura-nsk.tilda.ws/"
+                >
+                  KOZHURA_BIM
+                </a>
                 <HeaderLink LinkImg="/img/header_youtube.svg" />
               </div>
             </div>
@@ -99,7 +107,7 @@ export class Header extends Component {
       );
     } else {
       return (
-        <header className="header">
+        <header id="header" className={headerClass}>
           <div ref={this.containerRef} className="container">
             <div className="header__block">
               <HeaderLogo LogoLink="/" Logo="/img/kozhura_white.svg" />
@@ -110,6 +118,7 @@ export class Header extends Component {
                   IsBurger={true}
                 />
                 <HeaderMenu
+                  onClick={this.headerClose}
                   className={`burger__block ${
                     didBurgerPressed ? "active" : ""
                   }`}
@@ -124,4 +133,4 @@ export class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

@@ -5,6 +5,11 @@
   z-index: 1000;
 }
 
+.header-bkg {
+  background: $main-color;
+  position: relative;
+}
+
 .header__logo {
   width: 171px;
   height: 81px;

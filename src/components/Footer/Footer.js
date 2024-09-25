@@ -37,21 +37,26 @@ export default class Footer extends Component {
                   <p className="footer-nav__title">product</p>
                   <div className="footer-nav__link-block">
                     <FooterNav footerLink="/" navTxt="Главная" />
-                    <FooterNav navTxt="Библиотека" />
+                    <FooterNav footerLink="/library" navTxt="Библиотека" />
                   </div>
                 </div>
                 <div className="footer-nav__item">
                   <p className="footer-nav__title">Education</p>
                   <div className="footer-nav__link-block">
                     <FooterNav footerLink="/about-us" navTxt="О нас" />
-                    <FooterNav navTxt="Наша компания" />
+                    <FooterNav footerLink="/news" navTxt="Новости" />
                   </div>
                 </div>
                 <div className="footer-nav__item">
                   <p className="footer-nav__title">help</p>
                   <div className="footer-nav__link-block">
-                    <FooterNav navTxt="Курсы" />
-                    <FooterNav navLink="#" navTxt="KOZHURA_BIM" />
+                    <a
+                      className="footer-nav__link"
+                      target="_blank"
+                      href="https://kozhura-nsk.tilda.ws/"
+                    >
+                      KOZHURA_BIM
+                    </a>
                   </div>
                 </div>
               </div>
@@ -69,7 +74,7 @@ export default class Footer extends Component {
             </div>
           </div>
         </div>
-        <a href="#promo" className="up-btn">
+        <a href="#header" className="up-btn">
           <img src="/img/arrow.svg" />
         </a>
       </footer>
