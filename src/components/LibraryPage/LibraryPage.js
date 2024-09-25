@@ -14,6 +14,7 @@ class LibraryPage extends React.Component {
               courseSubTitle="СП 522.1325800.2023"
               courseDesc="Системам фасадных навесных вентилируемых. Правила проектирования, производства работ и эксплуатации"
               secondBtn={true}
+              coursePDFLink="https://www.minstroyrf.gov.ru/upload/iblock/16c/pl703f5bdhhewkbh5j32aamfqq1cuokz/SP-522.pdf"
             />
             <div className="library__line"></div>
             <LibraryItem
@@ -22,14 +23,16 @@ class LibraryPage extends React.Component {
               courseSubTitle="СП 426.1325800"
               courseDesc="Конструкции ограждающие светопрозрачные зданий и сооружений. Правила проектирования"
               secondBtn={true}
+              coursePDFLink="https://www.minstroyrf.gov.ru/upload/iblock/b61/SP-426.pdf"
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/sfnh.jpg"
+              courseImg="/img/sfnh.jpeg"
               courseTitle="Системы фасадные с наружными штукатурными слоями"
               courseSubTitle="СП 293.1325800.2017"
               courseDesc="Системы фасадные теплоизоляционные композиционные с наружными штукатурными слоями. Правила проектирования и производства работ"
               secondBtn={true}
+              coursePDFLink="https://www.minstroyrf.gov.ru/upload/iblock/64f/sistemy-fasadnye-so-shtukaturnymi-sloyami.pdf"
             />
             <div className="library__line"></div>
             <LibraryItem

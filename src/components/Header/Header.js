@@ -74,8 +74,10 @@ export class Header extends Component {
     const { location } = this.props;
 
     const headerClass =
-      location.pathname !== "/" && location.pathname !== "/about-us"
-        ? "header header-bkg" // Специальный класс для этой страницы
+      location.pathname !== "/" &&
+      location.pathname !== "/about-us" &&
+      location.pathname !== "/employer"
+        ? "header header-bkg"
         : "header";
 
     if (this.state.didBurgerTrue === false) {
@@ -90,7 +92,7 @@ export class Header extends Component {
                 <HeaderLink LinkTxt="Новости" Link="/news" />
               </div>
               <div className="header-ex-links">
-                <HeaderLink LinkTxt="Работодатель" Link="#" />
+                <HeaderLink LinkTxt="Работодатель" Link="/employer" />
                 <a
                   className="header-links__item"
                   target="_blank"

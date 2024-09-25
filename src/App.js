@@ -9,6 +9,7 @@ import { withRouter } from "./components/withRouter";
 import { AnimatePresence, motion } from "framer-motion";
 import LibraryPage from "./components/LibraryPage/LibraryPage";
 import NewsPage from "./components/NewsPage/NewsPage";
+import EmployerPage from "./components/EmployerPage/EmployerPage";
 
 class App extends React.Component {
   render() {
@@ -16,8 +17,8 @@ class App extends React.Component {
     return (
       <div className="wrapper">
         <ScrollToTop />
+        <Header key="header" />
         <AnimatePresence mode="wait">
-          <Header key="header" />
           <Routes location={location} key={location.pathname}>
             <Route
               path="/"
@@ -48,6 +49,14 @@ class App extends React.Component {
               element={
                 <PageWrapper>
                   <NewsPage />
+                </PageWrapper>
+              }
+            />
+            <Route
+              path="employer"
+              element={
+                <PageWrapper>
+                  <EmployerPage />
                 </PageWrapper>
               }
             />

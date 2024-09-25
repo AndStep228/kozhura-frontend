@@ -18,9 +18,21 @@ export default function PartnerItem(props) {
             <h2>{props.PartnerTitle}</h2>
             <h5>{props.PartnerSubtitle}</h5>
             <div className="info__btns">
-              <Button buttonTxt="Все курсы" />
-              <Button buttonTxt="Полный курс" />
-              <Button buttonTxt="Базовый курс" />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Все курсы"
+              />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Полный курс"
+              />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Базовый курс"
+              />
             </div>
           </div>
         </div>
@@ -32,9 +44,21 @@ export default function PartnerItem(props) {
             <h2>{props.PartnerTitle}</h2>
             <h5>{props.PartnerSubtitle}</h5>
             <div className="info__btns">
-              <Button buttonTxt="Все курсы" />
-              <Button buttonTxt="Полный курс" />
-              <Button buttonTxt="Базовый курс" />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Все курсы"
+              />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Полный курс"
+              />
+              <Button
+                isPageLink={true}
+                btnLink="/library"
+                buttonTxt="Базовый курс"
+              />
             </div>
           </div>
           <div className="partners__promo">
@@ -61,9 +85,21 @@ export default function PartnerItem(props) {
             <h5>{props.PartnerSubtitle}</h5>
           </div>
           <div className="info__btns">
-            <Button buttonTxt="Все курсы" />
-            <Button buttonTxt="Полный курс" />
-            <Button buttonTxt="Базовый курс" />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Все курсы"
+            />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Полный курс"
+            />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Базовый курс"
+            />
           </div>
         </div>
       );
@@ -81,9 +117,21 @@ export default function PartnerItem(props) {
             </div>
           </div>
           <div className="info__btns">
-            <Button buttonTxt="Все курсы" />
-            <Button buttonTxt="Полный курс" />
-            <Button buttonTxt="Базовый курс" />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Все курсы"
+            />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Полный курс"
+            />
+            <Button
+              isPageLink={true}
+              btnLink="/library"
+              buttonTxt="Базовый курс"
+            />
           </div>
         </div>
       );
@@ -102,9 +150,17 @@ export default function PartnerItem(props) {
           <h5>{props.PartnerSubtitle}</h5>
         </div>
         <div className="info__btns">
-          <Button buttonTxt="Все курсы" />
-          <Button buttonTxt="Полный курс" />
-          <Button buttonTxt="Базовый курс" />
+          <Button isPageLink={true} btnLink="/library" buttonTxt="Все курсы" />
+          <Button
+            isPageLink={true}
+            btnLink="/library"
+            buttonTxt="Полный курс"
+          />
+          <Button
+            isPageLink={true}
+            btnLink="/library"
+            buttonTxt="Базовый курс"
+          />
         </div>
       </div>
     );

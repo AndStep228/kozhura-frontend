@@ -19,8 +19,10 @@ export default function HeaderMenu(props) {
         </Link>
       </div>
       <div className="header__line"></div>
-      <div className="burger__ex-nav">
-        <Link className="nav__link">Работодатель</Link>
+      <div onClick={props.onClick} className="burger__ex-nav">
+        <Link to="/employer" className="nav__link">
+          Работодатель
+        </Link>
         <a className="nav__link" href="https://kozhura-nsk.tilda.ws/">
           KOZHURA_BIM
         </a>

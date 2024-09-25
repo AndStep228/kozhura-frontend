@@ -17,7 +17,16 @@ export default function LibraryItem(props) {
         <h3 className="course__desc">{props.courseDesc}</h3>
         <div className="course__btns">
           <Button buttonTxt="Узнать подробнее" />
-          {props.secondBtn ? <Button buttonTxt="Скачать PDF" /> : ""}
+          {props.secondBtn ? (
+            <Button
+              isLink={true}
+              btnHref={props.coursePDFLink}
+              btnTarget="_blank"
+              buttonTxt="Скачать PDF"
+            />
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

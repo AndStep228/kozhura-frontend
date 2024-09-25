@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Button from "../Button";
+import NewItem from "./NewItem";
 
 export default function NewsSlider() {
   const NextArrow = (props) => {
@@ -92,52 +92,26 @@ export default function NewsSlider() {
   return (
     <div className="new__container">
       <Slider {...settings}>
-        <div className="new__item">
-          <img src="/img/new-1.jpg" alt="" />
-          <p className="new__txt">
-            Современные оболочки зданий, как и сами здания с каждым новым
-            объектам становятся сложнее, архитекторы часто используют
-            бионические пространственные формы в которых нет прямых граней.
-          </p>
-          <Button
-            btnHref="https://drive.google.com/file/d/1nJ_o0qaTCUEu0iEbkNbp6vCrJnMu-a48/preview"
-            isLink={true}
-            buttonTxt="Подробнее"
-            btnTarget="_blank"
-          />
-        </div>
-        <div className="new__item">
-          <img src="/img/new-2.png" alt="" />
-          <p className="new__txt">
-            Здания и сооружения со светопрозрачными фасадами и кровлями.
-          </p>
-          <Button
-            btnHref="https://drive.google.com/file/d/1ZfY38kyPmXEjLgrvX7ZbA-AELK34UjgQ/preview"
-            isLink={true}
-            buttonTxt="Подробнее"
-            btnTarget="_blank"
-          />
-        </div>
-        <div className="new__item">
-          <img src="/img/new-3.png" alt="" />
-          <p className="new__txt">Виды и подтипы установки систем.</p>
-          <Button
-            btnHref="https://drive.google.com/file/d/12J5feIJrhW_RZ2-0vyBni4ZYNKO4D0va/preview"
-            isLink={true}
-            buttonTxt="Подробнее"
-            btnTarget="_blank"
-          />
-        </div>
-        <div className="new__item">
-          <img src="/img/new-4.png" alt="" />
-          <p className="new__txt">Обзор всех систем фасадов Schueco.</p>
-          <Button
-            btnHref="https://drive.google.com/file/d/1GFSl9KiX31aP1Ry01Rg4MB_DhwlHmowx/preview"
-            isLink={true}
-            buttonTxt="Подробнее"
-            btnTarget="_blank"
-          />
-        </div>
+        <NewItem
+          newImg="/img/new-1.jpg"
+          newTxt="Современные оболочки зданий, как и сами здания с каждым новым объектам становятся сложнее, архитекторы часто используют бионические пространственные формы в которых нет прямых граней."
+          newHref="https://drive.google.com/file/d/1nJ_o0qaTCUEu0iEbkNbp6vCrJnMu-a48/preview"
+        />
+        <NewItem
+          newImg="/img/new-2.png"
+          newTxt="Здания и сооружения со светопрозрачными фасадами и кровлями."
+          newHref="https://drive.google.com/file/d/1ZfY38kyPmXEjLgrvX7ZbA-AELK34UjgQ/preview"
+        />
+        <NewItem
+          newImg="/img/new-3.png"
+          newTxt="Виды и подтипы установки систем."
+          newHref="https://drive.google.com/file/d/12J5feIJrhW_RZ2-0vyBni4ZYNKO4D0va/preview"
+        />
+        <NewItem
+          newImg="/img/new-4.png"
+          newTxt="Обзор всех систем фасадов Schueco."
+          newHref="https://drive.google.com/file/d/1GFSl9KiX31aP1Ry01Rg4MB_DhwlHmowx/preview"
+        />
       </Slider>
     </div>
   );

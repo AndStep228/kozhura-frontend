@@ -52,7 +52,7 @@
 .footer-nav__item {
   width: max-content;
   display: grid;
-  grid-auto-flow: row;
+  grid-template-rows: minmax(auto, max-content) 1fr;
   gap: 90px;
   grid-template-columns: minmax(auto, max-content);
 }

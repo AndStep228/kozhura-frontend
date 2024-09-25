@@ -5,25 +5,19 @@
 .new__item {
   max-width: 460px;
   display: grid;
-  justify-items: center;
+  gap: 20px;
   margin: 0 !important;
   img {
     width: 100%;
     height: 300px;
     border-radius: 20px;
     object-fit: cover;
-    margin: 0 0 20px 0;
     box-shadow: -7px 7px 9px rgba(0, 0, 0, 0.2);
   }
 }
 
 .new__txt {
   font-size: 20px;
-  margin: 0 0 20px 0;
-}
-
-.Arrow {
-  background: $main-color;
 }
 
 .arrow {

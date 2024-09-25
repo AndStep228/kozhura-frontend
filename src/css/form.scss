@@ -39,6 +39,11 @@
     padding: 28px 40px;
     font-size: 24px;
     font-weight: 500;
+
+    &::placeholder {
+      color: #fff;
+      opacity: 50%;
+    }
   }
 }
 

@@ -124,10 +124,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .news-main {
-  padding: 100px 0 !important;
+  padding: 240px 0 !important;
 }
 
 .library-main {
+  padding: 240px 0 !important;
+}
+
+.employer-main {
   padding: 100px 0 !important;
 }
 
@@ -136,14 +140,22 @@ body::-webkit-scrollbar-thumb {
     padding: 50px 0 0 0;
   }
 
-  .news-main {
+  .employer-main {
     padding: 50px 0 !important;
+  }
+
+  .news-main {
+    padding: 170px 0 !important;
   }
 }
 
 @media (max-width: 768px) {
   .library-main {
-    padding: 50px 0 !important;
+    padding: 120px 0 !important;
+  }
+
+  .news-main {
+    padding: 120px 0 !important;
   }
 }
 
@@ -171,3 +183,6 @@ body::-webkit-scrollbar-thumb {
 @import "library";
 @import "news-block";
 @import "new-block";
+@import "employer-promo";
+@import "employer-info";
+@import "news-modal";
