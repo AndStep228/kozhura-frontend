@@ -16,7 +16,7 @@ class AboutPromo extends React.Component {
                   строительства и проектирования.
                 </h5>
               </div>
-              <img src="/img/about-promo__img.png" />
+              <img src="/img/AboutUs/about-promo__img.png" />
             </div>
           </div>
         </div>

@@ -10,32 +10,32 @@ export default class OurTeam extends Component {
           <PageTitle PageTitle="Наша команда" lineUnable={true} />
           <div className="our-team__block">
             <TeamMate
-              teamMateImg="/img/mate-1.jpg"
+              teamMateImg="/img/AboutUs/mate-1.jpg"
               teamMateTitle="Емельянов Алексей"
               teamMateSubTitle="Генеральный директор"
             />
             <TeamMate
-              teamMateImg="/img/mate-2.jpg"
+              teamMateImg="/img/AboutUs/mate-2.jpg"
               teamMateTitle="Безверхая Полина"
               teamMateSubTitle="Ведущий инженер"
             />
             <TeamMate
-              teamMateImg="/img/mate-3.jpg"
+              teamMateImg="/img/AboutUs/mate-3.jpg"
               teamMateTitle="Михайлов Антон"
               teamMateSubTitle="BIM - мастер"
             />
             <TeamMate
-              teamMateImg="/img/mate-6.jpg"
+              teamMateImg="/img/AboutUs/mate-6.jpg"
               teamMateTitle="Власов Николай"
               teamMateSubTitle="Руководитель конструкторского отдела"
             />
             <TeamMate
-              teamMateImg="/img/mate-4.jpg"
+              teamMateImg="/img/AboutUs/mate-4.jpg"
               teamMateTitle="Капустин Андрей"
               teamMateSubTitle="Программист - разработчик"
             />
             <TeamMate
-              teamMateImg="/img/mate-5.jpg"
+              teamMateImg="/img/AboutUs/mate-5.jpg"
               teamMateTitle="Паньков Михаил"
               teamMateSubTitle="BIM - менеджер"
             />

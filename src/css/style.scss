@@ -60,6 +60,10 @@ h3 {
   font-size: clamp(16px, 2.6vw, 40px);
 }
 
+h4 {
+  font-size: clamp(14px, 2.4vw, 36px);
+}
+
 h5 {
   font-size: clamp(14px, 2.2vw, 24px);
 }
@@ -114,6 +118,51 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
+.preloader {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-rows: repeat(2, 1fr);
+  background: #fff;
+  position: fixed;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+  padding: 0 15px;
+
+  svg {
+    align-self: flex-end;
+    max-width: 320px;
+  }
+
+  span {
+    align-self: flex-start;
+  }
+}
+
+.loader {
+  margin: 40px 0 0 0;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #ff7a00;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .main {
   flex: 1 1 auto;
   padding: 100px 0 0 0;
@@ -129,6 +178,10 @@ body::-webkit-scrollbar-thumb {
 
 .library-main {
   padding: 240px 0 !important;
+}
+
+.course-main {
+  padding: 240px 0 0 0 !important;
 }
 
 .employer-main {
@@ -147,6 +200,10 @@ body::-webkit-scrollbar-thumb {
   .news-main {
     padding: 170px 0 !important;
   }
+
+  .course-main {
+    padding: 170px 0 0 0 !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -156,6 +213,10 @@ body::-webkit-scrollbar-thumb {
 
   .news-main {
     padding: 120px 0 !important;
+  }
+
+  .course-main {
+    padding: 120px 0 0 0 !important;
   }
 }
 
@@ -168,21 +229,40 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+// Const
 @import "header";
 @import "button";
-@import "main-promo";
-@import "partners";
+@import "footer";
 @import "page-title";
 @import "form";
-@import "footer";
-@import "about-promo";
-@import "company-about";
-@import "teach-programs";
-@import "about-kozhura";
-@import "our-team";
-@import "library";
-@import "news-block";
-@import "new-block";
-@import "employer-promo";
-@import "employer-info";
-@import "news-modal";
+
+// MainPage
+@import "MainPage/main-promo";
+@import "MainPage/partners";
+
+// AboutUs
+@import "AboutUsPage/about-promo";
+@import "AboutUsPage/company-about";
+@import "AboutUsPage/teach-programs";
+@import "AboutUsPage/about-kozhura";
+@import "AboutUsPage/our-team";
+
+// Library
+@import "LibraryPage/library";
+
+// Course
+@import "CoursePage/course-promo";
+@import "CoursePage/course-page";
+@import "CoursePage/course-about";
+@import "CoursePage/course-speackers";
+@import "CoursePage/course-program";
+@import "CoursePage/course-skills";
+
+// News
+@import "NewsPage/news-block";
+@import "NewsPage/new-block";
+@import "NewsPage/news-modal";
+
+// Employer
+@import "EmployerPage/employer-promo";
+@import "EmployerPage/employer-info";

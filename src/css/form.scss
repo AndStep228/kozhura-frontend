@@ -1,6 +1,6 @@
 .form__wrapper {
   background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
-    url("../../public/img/form_bkg.jpg") center top no-repeat;
+    url("../../public/img/Main/form_bkg.jpg") center top no-repeat;
   background-size: cover;
   height: 631px;
   max-height: max-content;
@@ -19,6 +19,10 @@
   display: grid;
   gap: 30px;
   max-width: 921px;
+  h1 {
+    font-size: clamp(24px, 4vw, 64px);
+  }
+
   h1,
   h5 {
     color: white;
@@ -27,6 +31,7 @@
 
 .form {
   justify-self: flex-end;
+  position: relative;
   display: grid;
   gap: 15px;
   width: 560px;
@@ -45,6 +50,26 @@
       opacity: 50%;
     }
   }
+}
+
+.form__success {
+  background: green;
+  color: #fff;
+  padding: 20px 30px;
+  position: absolute;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 1s ease;
+  top: -50px;
+  left: -50px;
+}
+
+.form__success.fade-in {
+  opacity: 1;
+}
+
+.form__success.fade-out {
+  opacity: 0;
 }
 
 .react-tel-input .form-control {
@@ -96,6 +121,10 @@
   .form__wrapper {
     padding: 50px 0;
     height: auto;
+  }
+
+  .form__success {
+    left: 0;
   }
 
   .form__block {

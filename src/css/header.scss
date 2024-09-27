@@ -2,7 +2,7 @@
   width: 100%;
   height: 140px;
   position: absolute;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .header-bkg {
@@ -28,13 +28,14 @@
   display: grid;
   height: 100%;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0 60px;
+  gap: 0 40px;
   align-items: center;
 }
 
 .header-links {
   justify-self: center;
   display: grid;
+  gap: 40px;
   grid-auto-flow: column;
   align-items: center;
 }
@@ -42,6 +43,7 @@
 .header-ex-links {
   justify-self: right;
   display: grid;
+  gap: 40px;
   grid-auto-flow: column;
   align-items: center;
 }
@@ -56,10 +58,6 @@
   &:hover {
     opacity: 60%;
   }
-}
-
-.header-links__item:not(:last-child) {
-  margin: 0 40px 0 0;
 }
 
 .header__line {
@@ -137,7 +135,8 @@
 }
 
 .burger__block {
-  top: -100%;
+  top: -200%;
+  display: none;
   opacity: 0;
   right: 0;
   position: fixed;
@@ -149,7 +148,7 @@
   box-shadow: -10px 0px 12.4px 3px rgba(0, 0, 0, 0.25);
   display: grid;
   grid-auto-rows: auto;
-  padding: 120px 20px 50px 20px;
+  padding: 100px 20px 70px 20px;
 
   .header__line {
     display: block;
@@ -163,10 +162,13 @@
   visibility: visible;
   opacity: 100%;
   position: fixed;
+  display: grid;
+  gap: 50px;
   top: 25px;
   right: 0;
   transition: all 0.3s ease-in-out;
   z-index: 999;
+  overflow-y: scroll;
 }
 
 .burger__nav {

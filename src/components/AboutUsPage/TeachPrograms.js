@@ -12,7 +12,7 @@ export default class TeachPrograms extends Component {
               programSubtitle="Основы строительных технологий и проектирования."
               programTwoSubtitle="BIM-моделирование и автоматизация процессов."
               leftWrap={false}
-              programImg="/img/teach-programs-1.jpg"
+              programImg="/img/AboutUs/teach-programs-1.jpg"
             />
             <TeachProgramsItem
               programTitle="Практические задания, основанные на реальных проектах"
@@ -20,7 +20,7 @@ export default class TeachPrograms extends Component {
               programTwoSubtitle="Моделирование строительных процессов в VR/AR средах."
               programThreeSubtitle="Создание рабочих чертежей и технической документации."
               leftWrap={true}
-              programImg="/img/teach-programs-2.jpg"
+              programImg="/img/AboutUs/teach-programs-2.jpg"
             />
             <TeachProgramsItem
               programTitle="А также стажировки в крупнейших строительных организациях."
@@ -28,7 +28,7 @@ export default class TeachPrograms extends Component {
               programTwoSubtitle="Практическая работа на реальных строительных объектах."
               programThreeSubtitle="Совместные проекты с профессиональными архитекторами и инженерами."
               leftWrap={false}
-              programImg="/img/teach-programs-3.jpg"
+              programImg="/img/AboutUs/teach-programs-3.jpg"
             />
           </div>
         </div>

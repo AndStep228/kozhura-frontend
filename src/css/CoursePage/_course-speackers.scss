@@ -1,0 +1,35 @@
+.course__speackers {
+  display: grid;
+  gap: 37px;
+  grid-template-columns: repeat(auto-fill, minmax(392px, 0.7fr));
+}
+
+.speackers__item {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 25px;
+
+  img {
+    width: 100%;
+    border-radius: 20px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+}
+
+.speacker__name {
+  @include gradientTxt();
+  font-size: clamp(24px, 2vw, 32px);
+  font-weight: 500;
+}
+
+.speacker__txt {
+  font-size: clamp(14px, 1.5vw, 20px);
+  opacity: 60%;
+}
+
+@media (max-width: 420px) {
+  .course__speackers {
+    grid-template-columns: 1fr;
+  }
+}

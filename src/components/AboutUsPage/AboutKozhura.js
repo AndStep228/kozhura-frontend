@@ -6,31 +6,31 @@ export default class AboutKozhura extends Component {
     return (
       <div className="about-kozhura">
         <div className="container">
-          <PageTitle lineUnable={true} PageTitle="Контакты" />
+          <PageTitle lineUnable={true} PageTitle="О компании KOZHURA" />
           <div className="about-kozhura__block">
             <div className="kozhura-description">
               <h1>
                 Компания KOZHURA - занимается изучением и внедрением
                 инструментов в сфере BIM, VR, AR
               </h1>
-              <img src="/img/kozhura-description-img.jpg" alt="" />
+              <img src="/img/AboutUs/kozhura-description-img.jpg" alt="" />
             </div>
             <div className="kozhura-specialization">
               <h1>
                 Наша специализация проектирование и строительство объектов с
                 использованием BIM-технологий
               </h1>
-              <img src="/img/kozhura-specialization.jpg" alt="" />
+              <img src="/img/AboutUs/kozhura-specialization.jpg" alt="" />
             </div>
             <div className="work-process">
               <h1>
                 Это позволяет совместно работать архитекторам, инженерам,
                 подрядчикам и управляющей компании
               </h1>
-              <img src="/img/work-process-1.png" alt="" />
-              <img src="/img/work-process-2.png" alt="" />
-              <img src="/img/work-process-3.png" alt="" />
-              <img src="/img/work-process-4.png" alt="" />
+              <img src="/img/AboutUs/work-process-1.png" alt="" />
+              <img src="/img/AboutUs/work-process-2.png" alt="" />
+              <img src="/img/AboutUs/work-process-3.png" alt="" />
+              <img src="/img/AboutUs/work-process-4.png" alt="" />
             </div>
             <div className="work-cycles">
               <h1>
@@ -40,7 +40,7 @@ export default class AboutKozhura extends Component {
               <div className="cycles__block">
                 <div className="cycles__item">
                   <div className="cycles__img">
-                    <img src="/img/cycles-1.svg" alt="" />
+                    <img src="/img/AboutUs/cycles-1.svg" alt="" />
                   </div>
                   <div className="cycles__txt">
                     <h1>01</h1>
@@ -49,7 +49,7 @@ export default class AboutKozhura extends Component {
                 </div>
                 <div className="cycles__item">
                   <div className="cycles__img">
-                    <img src="/img/cycles-2.svg" alt="" />
+                    <img src="/img/AboutUs/cycles-2.svg" alt="" />
                   </div>
                   <div className="cycles__txt">
                     <h1>02</h1>
@@ -58,7 +58,7 @@ export default class AboutKozhura extends Component {
                 </div>
                 <div className="cycles__item">
                   <div className="cycles__img">
-                    <img src="/img/cycles-3.svg" alt="" />
+                    <img src="/img/AboutUs/cycles-3.svg" alt="" />
                   </div>
                   <div className="cycles__txt">
                     <h1>03</h1>
@@ -67,7 +67,7 @@ export default class AboutKozhura extends Component {
                 </div>
                 <div className="cycles__item">
                   <div className="cycles__img">
-                    <img src="/img/cycles-4.svg" alt="" />
+                    <img src="/img/AboutUs/cycles-4.svg" alt="" />
                   </div>
                   <div className="cycles__txt">
                     <h1>04</h1>
@@ -76,7 +76,7 @@ export default class AboutKozhura extends Component {
                 </div>
                 <div className="cycles__item">
                   <div className="cycles__img">
-                    <img src="/img/cycles-5.svg" alt="" />
+                    <img src="/img/AboutUs/cycles-5.svg" alt="" />
                   </div>
                   <div className="cycles__txt">
                     <h1>05</h1>

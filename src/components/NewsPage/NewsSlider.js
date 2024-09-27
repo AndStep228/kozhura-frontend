@@ -93,22 +93,22 @@ export default function NewsSlider() {
     <div className="new__container">
       <Slider {...settings}>
         <NewItem
-          newImg="/img/new-1.jpg"
+          newImg="/img/News/new-1.jpg"
           newTxt="Современные оболочки зданий, как и сами здания с каждым новым объектам становятся сложнее, архитекторы часто используют бионические пространственные формы в которых нет прямых граней."
           newHref="https://drive.google.com/file/d/1nJ_o0qaTCUEu0iEbkNbp6vCrJnMu-a48/preview"
         />
         <NewItem
-          newImg="/img/new-2.png"
+          newImg="/img/News/new-2.png"
           newTxt="Здания и сооружения со светопрозрачными фасадами и кровлями."
           newHref="https://drive.google.com/file/d/1ZfY38kyPmXEjLgrvX7ZbA-AELK34UjgQ/preview"
         />
         <NewItem
-          newImg="/img/new-3.png"
+          newImg="/img/News/new-3.png"
           newTxt="Виды и подтипы установки систем."
           newHref="https://drive.google.com/file/d/12J5feIJrhW_RZ2-0vyBni4ZYNKO4D0va/preview"
         />
         <NewItem
-          newImg="/img/new-4.png"
+          newImg="/img/News/new-4.png"
           newTxt="Обзор всех систем фасадов Schueco."
           newHref="https://drive.google.com/file/d/1GFSl9KiX31aP1Ry01Rg4MB_DhwlHmowx/preview"
         />

@@ -44,9 +44,25 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .our-team__item {
+    img {
+      width: 60%;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .our-team__block {
     gap: 50px;
+  }
+}
+
+@media (max-width: 450px) {
+  .our-team__item {
+    img {
+      width: 100%;
+    }
   }
 }
 

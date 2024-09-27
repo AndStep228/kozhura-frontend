@@ -50,6 +50,7 @@ export default class Footer extends Component {
                 <div className="footer-nav__item">
                   <p className="footer-nav__title">help</p>
                   <div className="footer-nav__link-block">
+                    <FooterNav footerLink="/employer" navTxt="Работодатель" />
                     <a
                       className="footer-nav__link"
                       target="_blank"

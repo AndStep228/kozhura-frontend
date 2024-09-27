@@ -1,0 +1,29 @@
+.course__program {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 2.5vw;
+}
+
+.program__item {
+  display: grid;
+  gap: 50px;
+
+  h1 {
+    @include gradientTxt;
+  }
+
+  h4 {
+    font-weight: 500;
+  }
+}
+
+.program__speacker {
+  font-size: clamp(14px, 1.5vw, 20px);
+  opacity: 60%;
+}
+
+@media (max-width: 768px) {
+  .program__item {
+    gap: 30px;
+  }
+}

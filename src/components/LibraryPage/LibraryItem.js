@@ -4,7 +4,9 @@ import Button from "../Button";
 export default function LibraryItem(props) {
   return (
     <div className="library__item">
-      <img src={props.courseImg} alt="" />
+      <div className="library__img">
+        <img src={props.courseImg} alt="" />
+      </div>
       <div className="course__txt">
         <div className="course__title">
           <h1>{props.courseTitle}</h1>

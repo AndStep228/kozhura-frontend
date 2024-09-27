@@ -1,18 +1,31 @@
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
+import React, { useState, useEffect } from "react";
+import { useForm, Controller, setFocus } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Button from "./Button";
+import { AnimatePresence, motion } from "framer-motion";
 
-const RegistrationForm = () => {
+export default function RegistrationForm() {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    shouldFocusError: false,
+  });
+
+  const [shouldRenderMessage, setShouldRenderMessage] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data); // Отправка данных формы
+    console.log(data);
+
+    reset();
+    setShouldRenderMessage(true);
+
+    setTimeout(() => {
+      setShouldRenderMessage(false);
+    }, 3000);
   };
 
   return (
@@ -53,8 +66,16 @@ const RegistrationForm = () => {
         <Controller
           name="phone"
           control={control}
-          defaultValue=""
-          rules={{ required: "Телефон обязателен" }}
+          defaultValue="+7"
+          rules={{
+            required: "Телефон обязателен",
+            validate: (value) => {
+              if (!value || value.length < 11) {
+                return "Введите корректный номер телефона";
+              }
+              return true;
+            },
+          }}
           render={({ field }) => (
             <PhoneInput
               {...field}
@@ -76,8 +97,19 @@ const RegistrationForm = () => {
         <Button btnType="submit" buttonTxt="Зарегистрироваться" />
         <Button btnType="button" buttonTxt="Войти" />
       </div>
+      <AnimatePresence>
+        {shouldRenderMessage && (
+          <motion.span
+            initial={{ opacity: 0, y: -10, x: -10 }}
+            animate={{ opacity: 1, y: 0, x: 0 }}
+            exit={{ opacity: 0, y: -10, x: -10 }}
+            transition={{ duration: 0.5 }}
+            className="form__success"
+          >
+            Регистрация прошла успешно!
+          </motion.span>
+        )}
+      </AnimatePresence>
     </form>
   );
-};
-
-export default RegistrationForm;
+}

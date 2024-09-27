@@ -21,7 +21,13 @@
   img {
     width: 100%;
     border-radius: 20px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
   }
+}
+
+.library__img {
+  height: 100%;
 }
 
 .course__txt {
@@ -61,7 +67,7 @@
     grid-template-columns: 1fr;
 
     img {
-      width: 450px;
+      width: 350px;
     }
   }
 

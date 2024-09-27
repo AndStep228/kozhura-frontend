@@ -1,0 +1,29 @@
+.course__about {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+
+  .about__item {
+    display: grid;
+    gap: 3vw;
+    background: $main-color;
+    border-radius: 20px;
+    padding: 4vw 3vw;
+    color: #fff;
+  }
+}
+
+@media (max-width: 1200px) {
+  .course__about {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .course__about {
+    gap: 20px;
+    .about__item {
+      padding: 7vw 6vw;
+    }
+  }
+}

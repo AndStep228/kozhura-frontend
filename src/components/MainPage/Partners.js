@@ -65,7 +65,7 @@ export default class Partners extends Component {
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
               LeftFlow={false}
-              PartnerImg="/img/sib-facades.svg"
+              PartnerImg="/img/Main/sib-facades.svg"
               PartnerImgAlt="sib-facades"
               PartnerVideoLink="https://www.youtube.com/embed/XluzrSHBJg4"
               PartnerTitle="ООО “Сибирские Фасады” — производственно-строительная компания, реализующая жилые, административные и инфраструктурные проекты"
@@ -76,7 +76,7 @@ export default class Partners extends Component {
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
               LeftFlow={true}
-              PartnerImg="/img/hilti.svg"
+              PartnerImg="/img/Main/hilti.svg"
               PartnerImgAlt="hilti"
               PartnerVideoLink="https://www.youtube.com/embed/t09FYW7kct0"
               PartnerTitle="Hilti - это мировой лидер в разработке и производстве передовых технологий, программного обеспечения и услуг для профессионалов строительной отрасли"
@@ -88,7 +88,7 @@ export default class Partners extends Component {
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
               LeftFlow={true}
-              PartnerImg="/img/schuco.svg"
+              PartnerImg="/img/Main/schuco.svg"
               PartnerImgAlt="schuco"
               PartnerVideoLink="https://www.youtube.com/embed/JNGheowgRtw"
               PartnerTitle="Schuco - ведущий поставщик высококачественных оконных, дверных и фасадных систем из алюминия и стали"
@@ -99,7 +99,7 @@ export default class Partners extends Component {
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
               LeftFlow={false}
-              PartnerImg="/img/AGC.svg"
+              PartnerImg="/img/Main/AGC.svg"
               PartnerImgAlt="AGC"
               PartnerVideoLink="https://www.youtube.com/embed/2BACwLhMd-w"
               PartnerTitle="AGC – мировой лидер в производстве стекла для архитектурно-строительного и автомобильного применения."

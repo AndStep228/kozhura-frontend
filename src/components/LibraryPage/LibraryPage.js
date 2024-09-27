@@ -9,7 +9,7 @@ class LibraryPage extends React.Component {
         <div className="container">
           <div className="library__block">
             <LibraryItem
-              courseImg="/img/fs.jpeg"
+              courseImg="/img/LibraryPage/fs.jpeg"
               courseTitle="Фасадные системы"
               courseSubTitle="СП 522.1325800.2023"
               courseDesc="Системам фасадных навесных вентилируемых. Правила проектирования, производства работ и эксплуатации"
@@ -18,7 +18,7 @@ class LibraryPage extends React.Component {
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/spk.jpeg"
+              courseImg="/img/LibraryPage/spk.jpeg"
               courseTitle="Свето-прозрачные конструкции"
               courseSubTitle="СП 426.1325800"
               courseDesc="Конструкции ограждающие светопрозрачные зданий и сооружений. Правила проектирования"
@@ -27,7 +27,7 @@ class LibraryPage extends React.Component {
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/sfnh.jpeg"
+              courseImg="/img/LibraryPage/sfnh.jpeg"
               courseTitle="Системы фасадные с наружными штукатурными слоями"
               courseSubTitle="СП 293.1325800.2017"
               courseDesc="Системы фасадные теплоизоляционные композиционные с наружными штукатурными слоями. Правила проектирования и производства работ"
@@ -36,21 +36,21 @@ class LibraryPage extends React.Component {
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/hilti-course.jpg"
+              courseImg="/img/LibraryPage/hilti-course.jpg"
               courseTitle="Курс по крепежным системам HILTI"
               courseDesc="Компания активно работает в области улучшения энергоэффективности и устойчивости строительных конструкций, предлагая инновационные решения и материалы."
               secondBtn={false}
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/schuco-course.jpg"
+              courseImg="/img/LibraryPage/schuco-course.jpg"
               courseTitle="Курс по CПК от компании SHUECO"
               courseDesc="Курс по конструкциям фасадным светопрозрачным предназначен для тех, кто хочет изучить основы проектирования, монтажа и эксплуатации светопрозрачных фасадов с использованием современных технологий BIM."
               secondBtn={false}
             />
             <div className="library__line"></div>
             <LibraryItem
-              courseImg="/img/cerezit-course.jpg"
+              courseImg="/img/LibraryPage/cerezit-course.jpg"
               courseTitle="Курс по СФТК от компании ЦЕРЕЗИТ"
               courseDesc="Данный курс научит вас: Использовать библиотеку семейств CERESIT для выбора и вставки материалов в модели, а также редактирования их параметров. Создавать спецификации и сметы с помощью встроенных инструментов Revit."
               secondBtn={false}
