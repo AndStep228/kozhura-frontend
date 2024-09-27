@@ -51,6 +51,7 @@ export default function NewsModal({ isOpen, onClose, content }) {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
