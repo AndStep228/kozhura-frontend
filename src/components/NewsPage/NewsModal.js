@@ -82,14 +82,14 @@ export default function NewsModal({ isOpen, onClose, content }) {
               <Slider {...settings}>
                 {content.images &&
                   content.images.map((image, index) => (
-                    <img key={index} src={image} />
+                    <img key={index} src={image} alt="news-images" />
                   ))}
               </Slider>
             </div>
             <div className="modal__txt">
-              <h5>{content.title}</h5>
-              <h5>{content.texts[1]}</h5>
-              <p>{content.texts[0]}</p>
+              <h5>{content.news_title}</h5>
+              <h5>{content.news_content}</h5>
+              <p>{content.news_date}</p>
             </div>
             <div onClick={() => onClose("exit")} className="modal__close-block">
               <div className="modal__close"></div>

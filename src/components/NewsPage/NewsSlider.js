@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import NewItem from "./NewItem";
 
 export default function NewsSlider() {
+  const [innovations, setInnovations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("https://api.dev.kozhura.school/api/other_pages/innovations/")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Ошибка сети");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setInnovations(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div>Загрузка...</div>; // Показываем индикатор загрузки
+  }
+
+  if (error) {
+    return <div>Ошибка: {error}</div>; // Показываем сообщение об ошибке
+  }
+
+  if (!innovations) {
+    return <div>Новостей нет</div>; // Показываем сообщение, если курс не найден
+  }
+
   const NextArrow = (props) => {
     const { onClick } = props;
     return (
@@ -92,26 +126,14 @@ export default function NewsSlider() {
   return (
     <div className="new__container">
       <Slider {...settings}>
-        <NewItem
-          newImg="/img/News/new-1.jpg"
-          newTxt="Современные оболочки зданий, как и сами здания с каждым новым объектам становятся сложнее, архитекторы часто используют бионические пространственные формы в которых нет прямых граней."
-          newHref="https://drive.google.com/file/d/1nJ_o0qaTCUEu0iEbkNbp6vCrJnMu-a48/preview"
-        />
-        <NewItem
-          newImg="/img/News/new-2.png"
-          newTxt="Здания и сооружения со светопрозрачными фасадами и кровлями."
-          newHref="https://drive.google.com/file/d/1ZfY38kyPmXEjLgrvX7ZbA-AELK34UjgQ/preview"
-        />
-        <NewItem
-          newImg="/img/News/new-3.png"
-          newTxt="Виды и подтипы установки систем."
-          newHref="https://drive.google.com/file/d/12J5feIJrhW_RZ2-0vyBni4ZYNKO4D0va/preview"
-        />
-        <NewItem
-          newImg="/img/News/new-4.png"
-          newTxt="Обзор всех систем фасадов Schueco."
-          newHref="https://drive.google.com/file/d/1GFSl9KiX31aP1Ry01Rg4MB_DhwlHmowx/preview"
-        />
+        {innovations.map((innovation) => (
+          <NewItem
+            key={innovation.id}
+            newImg={innovation.innovation_image}
+            newTxt={innovation.innovation_name}
+            newHref={innovation.innovation_file}
+          />
+        ))}
       </Slider>
     </div>
   );

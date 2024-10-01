@@ -87,7 +87,7 @@ export default class Partners extends Component {
             <PartnerItem
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
-              LeftFlow={true}
+              LeftFlow={false}
               PartnerImg="/img/Main/schuco.svg"
               PartnerImgAlt="schuco"
               PartnerVideoLink="https://www.youtube.com/embed/JNGheowgRtw"
@@ -98,7 +98,7 @@ export default class Partners extends Component {
             <PartnerItem
               TabletWrap={tabletWrap}
               MobileWrap={mobileWrap}
-              LeftFlow={false}
+              LeftFlow={true}
               PartnerImg="/img/Main/AGC.svg"
               PartnerImgAlt="AGC"
               PartnerVideoLink="https://www.youtube.com/embed/2BACwLhMd-w"

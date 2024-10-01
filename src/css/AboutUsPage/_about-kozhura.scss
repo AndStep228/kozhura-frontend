@@ -117,12 +117,23 @@
   height: 260px;
 }
 
-@media (max-width: 1610px) {
+@media (max-width: 1920px) {
   .cycles__block {
     overflow-x: scroll;
     padding: 0 15px 50px 15px;
     margin-right: -15px;
     margin-left: -15px;
+
+    cursor: grab;
+
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .cycles__block.active {
+    cursor: grabbing;
   }
 }
 

@@ -118,6 +118,12 @@ body::-webkit-scrollbar-thumb {
   height: 100%;
 }
 
+@media (max-width: 1920px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
 .preloader {
   width: 100vw;
   height: 100vh;

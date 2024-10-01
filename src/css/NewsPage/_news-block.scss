@@ -102,6 +102,10 @@
     grid-template-columns: 1fr 1fr;
     max-width: 700px;
   }
+
+  .news-info__item {
+    height: 100%;
+  }
 }
 
 @media (max-width: 1200px) {
@@ -125,7 +129,8 @@
 @media (max-width: 870px) {
   .news__block {
     grid-template-columns: 1fr;
-    grid-template-rows: 500px 500px 500px;
+    grid-template-rows: repeat(auto-fill, 500px);
+    height: max-content;
 
     div:nth-of-type(1) {
       grid-row: 1;

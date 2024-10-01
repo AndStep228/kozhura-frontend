@@ -4,6 +4,7 @@
 
 .new__item {
   max-width: 460px;
+  min-height: 553px;
   display: grid;
   gap: 20px;
   margin: 0 !important;
@@ -13,6 +14,10 @@
     border-radius: 20px;
     object-fit: cover;
     box-shadow: -7px 7px 9px rgba(0, 0, 0, 0.2);
+  }
+
+  .button__link {
+    align-self: flex-end;
   }
 }
 

@@ -7,10 +7,13 @@ export default class CompanyAbout extends Component {
         <div className="container">
           <div className="about-company__wrapper">
             <div className="company__block">
-              <img src="/img/AboutUs/sib-facades-about.svg" />
-              <img src="/img/AboutUs/schuco-about.svg" />
-              <img src="/img/AboutUs/hilti-about.svg" />
-              <img src="/img/AboutUs/agc-about.svg" />
+              <img
+                src="/img/AboutUs/sib-facades-about.svg"
+                alt="siberian-facades"
+              />
+              <img src="/img/AboutUs/schuco-about.svg" alt="schuco" />
+              <img src="/img/AboutUs/hilti-about.svg" alt="hilti" />
+              <img src="/img/AboutUs/agc-about.svg" alt="aig" />
             </div>
             <div className="about-company__block">
               <h1>

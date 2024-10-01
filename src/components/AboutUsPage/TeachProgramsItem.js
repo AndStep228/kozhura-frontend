@@ -22,13 +22,13 @@ export default function TeachProgramsItem(props) {
             )}
           </ul>
         </div>
-        <img src={props.programImg} />
+        <img src={props.programImg} alt="teach-programs" />
       </div>
     );
   } else {
     return (
       <div className="teach-programs__item left-wrap">
-        <img src={props.programImg} />
+        <img src={props.programImg} alt="teach-programs" />
         <div className="teach-programs__txt">
           <h1>{props.programTitle}</h1>
           <ul>

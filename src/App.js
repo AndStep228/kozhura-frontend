@@ -356,7 +356,7 @@ function App() {
             <Route path="library" element={<LibraryPage />} />
             <Route path="news" element={<NewsPage />} />
             <Route path="employer" element={<EmployerPage />} />
-            <Route path="course" element={<CoursePage />} />
+            <Route path="course/:id" element={<CoursePage />} />
           </Routes>
           <Footer key="footer" />
         </div>

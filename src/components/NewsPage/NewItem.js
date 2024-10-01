@@ -4,7 +4,7 @@ import Button from "../Button";
 export default function NewItem(props) {
   return (
     <div className="new__item">
-      <img src={props.newImg} alt="" />
+      <img src={props.newImg} alt="innovation" />
       <p className="new__txt">{props.newTxt}</p>
       <Button
         btnHref={props.newHref}

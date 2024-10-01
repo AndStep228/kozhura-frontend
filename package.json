@@ -1,5 +1,6 @@
 {
   "name": "kozhura",
+  "proxy": "https://api.dev.kozhura.school",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
