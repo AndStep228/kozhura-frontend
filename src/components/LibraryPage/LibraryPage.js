@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import LibraryItem from "./LibraryItem";
 
-function LibraryPage() {
+function LibraryPage({ setGlobalLoading }) {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,7 +23,7 @@ function LibraryPage() {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [setGlobalLoading]);
 
   if (error) {
     return <div>Ошибка: {error}</div>; // Показываем сообщение об ошибке

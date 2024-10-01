@@ -3,7 +3,7 @@ import PageTitle from "../PageTitle";
 import FormBlock from "../FormBlock";
 import { useParams } from "react-router-dom";
 
-export default function CoursePage() {
+export default function CoursePage({ setGlobalLoading }) {
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,7 @@ export default function CoursePage() {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [setGlobalLoading]);
 
   if (loading) {
     return <div>Загрузка...</div>; // Показываем индикатор загрузки

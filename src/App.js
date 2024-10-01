@@ -353,10 +353,19 @@ function App() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<MainPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
-            <Route path="library" element={<LibraryPage />} />
-            <Route path="news" element={<NewsPage />} />
+            <Route
+              path="library"
+              element={<LibraryPage setGlobalLoading={setIsLoading} />}
+            />
+            <Route
+              path="news"
+              element={<NewsPage setGlobalLoading={setIsLoading} />}
+            />
             <Route path="employer" element={<EmployerPage />} />
-            <Route path="course/:id" element={<CoursePage />} />
+            <Route
+              path="course/:id"
+              element={<CoursePage setGlobalLoading={setIsLoading} />}
+            />
           </Routes>
           <Footer key="footer" />
         </div>

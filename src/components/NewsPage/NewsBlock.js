@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import NewsItem from "./NewsItem";
 import NewsModal from "./NewsModal";
 
-export default function NewsBlock() {
+export default function NewsBlock({ setGlobalLoading }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentContent, setCurrentContent] = useState(null);
   const [information, setInformation] = useState([]);
@@ -43,7 +43,7 @@ export default function NewsBlock() {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [setGlobalLoading]);
 
   if (loading) {
     return <div>Загрузка...</div>; // Показываем индикатор загрузки
@@ -91,7 +91,7 @@ export default function NewsBlock() {
             <div key={info_item.id} className="news-info__item">
               <h5>{info_item.information_title}</h5>
               <ul>
-                {info_item.id != 1 ? (
+                {info_item.id !== 1 ? (
                   <>
                     <li>
                       Скоро нам пришлют документы для вставки нашего проекта.
