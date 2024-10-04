@@ -139,7 +139,7 @@ body::-webkit-scrollbar-thumb {
 
   svg {
     align-self: flex-end;
-    max-width: 320px;
+    max-width: 290px;
   }
 
   span {
@@ -186,6 +186,11 @@ body::-webkit-scrollbar-thumb {
   padding: 240px 0 !important;
 }
 
+.pa-main {
+  padding: 240px 0 !important;
+  background: rgba(65, 65, 65, 0.4);
+}
+
 .course-main {
   padding: 240px 0 0 0 !important;
 }
@@ -210,6 +215,10 @@ body::-webkit-scrollbar-thumb {
   .course-main {
     padding: 170px 0 0 0 !important;
   }
+
+  .pa-main {
+    padding: 170px 0 50px 0 !important;
+  }
 }
 
 @media (max-width: 768px) {
@@ -223,6 +232,10 @@ body::-webkit-scrollbar-thumb {
 
   .course-main {
     padding: 120px 0 0 0 !important;
+  }
+
+  .pa-main {
+    padding: 120px 0 40px 0 !important;
   }
 }
 
@@ -272,3 +285,12 @@ body::-webkit-scrollbar-thumb {
 // Employer
 @import "EmployerPage/employer-promo";
 @import "EmployerPage/employer-info";
+
+// EnterPage
+@import "EnterPage/enter-promo";
+
+// PersonalAccount
+@import "PersonalAccountPage/personal-account";
+@import "PersonalAccountPage/my-course";
+@import "PersonalAccountPage/personal-data";
+@import "PersonalAccountPage/teach-place";

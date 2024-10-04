@@ -10,6 +10,7 @@ export default function RegistrationForm() {
     handleSubmit,
     control,
     formState: { errors },
+    getValues,
     reset,
   } = useForm({
     shouldFocusError: false,
@@ -100,6 +101,28 @@ export default function RegistrationForm() {
       </div>
       <div>
         <Controller
+          name="confirmPassword"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: "Подтвердите пароль",
+            validate: (value) =>
+              value === getValues("password") || "Пароли не совпадают",
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              placeholder="Подтвердите пароль"
+              type="password"
+            />
+          )}
+        />
+        {errors.confirmPassword && (
+          <span className="error">{errors.confirmPassword.message}</span>
+        )}
+      </div>
+      <div>
+        <Controller
           name="phone"
           control={control}
           defaultValue="+7"
@@ -131,7 +154,12 @@ export default function RegistrationForm() {
       </div>
       <div className="form__btns">
         <Button btnType="submit" buttonTxt="Зарегистрироваться" />
-        <Button btnType="button" buttonTxt="Войти" />
+        <Button
+          btnType="button"
+          buttonTxt="Войти"
+          isPageLink={true}
+          btnLink="/enter-page"
+        />
       </div>
       <AnimatePresence>
         {shouldRenderMessage && !WrongMessage ? (

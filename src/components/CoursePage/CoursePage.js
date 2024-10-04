@@ -74,7 +74,7 @@ export default function CoursePage({ setGlobalLoading }) {
                 </div>
               ))}
             </div>
-            <PageTitle lineUnable={true} PageTitle="Программа круса" />
+            <PageTitle lineUnable={true} PageTitle="Программа курса" />
             <div className="course__program">
               <div className="program__item">
                 <h1>1.</h1>

@@ -13,6 +13,38 @@
   }
 }
 
+.header-pa {
+  background: #fff;
+
+  .header-links__item {
+    color: rgba(65, 65, 65, 0.4);
+
+    img {
+      filter: invert(0.3);
+    }
+  }
+
+  .header__logo {
+    filter: invert(0.3);
+  }
+
+  .header__line {
+    display: none;
+  }
+
+  .header__burger {
+    span {
+      background: rgba(65, 65, 65, 0.4);
+    }
+  }
+
+  .header__burger:before,
+  .header__burger:after {
+    content: "";
+    background: rgba(65, 65, 65, 0.4);
+  }
+}
+
 .header__logo {
   width: 171px;
   height: 81px;

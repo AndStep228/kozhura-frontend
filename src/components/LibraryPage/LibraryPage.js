@@ -39,10 +39,10 @@ function LibraryPage({ setGlobalLoading }) {
               Link={`/course/${course.id}`}
               courseImg={course.image}
               courseTitle={course.name}
-              courseSubTitle="СП 522.1325800.2023"
-              courseDesc="Системам фасадных навесных вентилируемых. Правила проектирования, производства работ и эксплуатации"
+              courseSubTitle={course.code_name}
+              courseDesc={course.about_on_library}
               secondBtn={true}
-              coursePDFLink="https://www.minstroyrf.gov.ru/upload/iblock/16c/pl703f5bdhhewkbh5j32aamfqq1cuokz/SP-522.pdf"
+              coursePDFLink={course.pdf_link}
             />
           ))}
         </div>

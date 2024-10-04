@@ -1,0 +1,53 @@
+.personal-data {
+  display: grid;
+  gap: 50px;
+  grid-auto-rows: max-content;
+  grid-template-rows: repeat(auto-fill, minmax(auto, max-content));
+}
+
+.fio__block {
+  display: grid;
+  height: max-content;
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  grid-template-columns: repeat(3, minmax(auto, max-content));
+  gap: 20px;
+
+  input {
+    grid-row: 2;
+  }
+}
+
+.birth__block {
+  height: max-content;
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  display: grid;
+  gap: 20px;
+
+  div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, max-content));
+    gap: 0 20px;
+  }
+
+  input {
+    grid-row: 2;
+  }
+
+  .data__title {
+    grid-column: 1/ 4;
+  }
+}
+
+.gender__block {
+  height: max-content;
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  display: grid;
+  gap: 20px;
+}
+
+.country__block {
+  height: max-content;
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  display: grid;
+  gap: 20px;
+}

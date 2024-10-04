@@ -1,0 +1,13 @@
+.teach-place {
+  display: grid;
+  gap: 50px;
+  grid-auto-rows: max-content;
+  grid-template-rows: repeat(auto-fill, minmax(auto, max-content));
+}
+
+.teach-place__block {
+  height: max-content;
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  display: grid;
+  gap: 20px;
+}

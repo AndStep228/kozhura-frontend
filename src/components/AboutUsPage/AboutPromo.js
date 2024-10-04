@@ -12,7 +12,7 @@ class AboutPromo extends React.Component {
               <div className="about-promo__txt">
                 <h1>KOZHURA SCHOOL – это образовательный портал</h1>
                 <h5>
-                  пециализирующийся на обучении студентов в области
+                  Cпециализирующийся на обучении студентов в области
                   строительства и проектирования.
                 </h5>
               </div>

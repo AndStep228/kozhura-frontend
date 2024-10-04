@@ -1,0 +1,16 @@
+.enter-promo {
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+    url("../../../public/img/EnterPage/enter-promo.jpg") center bottom no-repeat;
+  background-size: cover;
+  .promo__wrapper {
+    justify-items: center;
+  }
+
+  .form {
+    justify-self: center;
+  }
+
+  .form__btns {
+    grid-template-columns: 1fr;
+  }
+}

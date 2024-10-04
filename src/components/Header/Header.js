@@ -74,9 +74,12 @@ export class Header extends Component {
     const { location } = this.props;
 
     const headerClass =
-      location.pathname !== "/" &&
-      location.pathname !== "/about-us" &&
-      location.pathname !== "/employer"
+      location.pathname === "/personal-account"
+        ? "header header-pa"
+        : location.pathname !== "/" &&
+          location.pathname !== "/about-us" &&
+          location.pathname !== "/enter-page" &&
+          location.pathname !== "/employer"
         ? "header header-bkg"
         : "header";
 

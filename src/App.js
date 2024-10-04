@@ -7,7 +7,12 @@ import { lazy, Suspense } from "react";
 // ШАПКА И ФУТЕР
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+
 // СТРАНИЦЫ
+const PersonalAccountPage = lazy(() =>
+  import("./components/PersonalAccountPage/PersonalAccountPage")
+);
+const EnterPage = lazy(() => import("./components/EnterPages/EnterPage"));
 const NewsPage = lazy(() => import("./components/NewsPage/NewsPage"));
 const LibraryPage = lazy(() => import("./components/LibraryPage/LibraryPage"));
 const CoursePage = lazy(() => import("./components/CoursePage/CoursePage"));
@@ -352,7 +357,9 @@ function App() {
 
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<MainPage />} />
+            <Route path="enter-page" element={<EnterPage />} />
             <Route path="about-us" element={<AboutUsPage />} />
+            <Route path="personal-account" element={<PersonalAccountPage />} />
             <Route
               path="library"
               element={<LibraryPage setGlobalLoading={setIsLoading} />}
