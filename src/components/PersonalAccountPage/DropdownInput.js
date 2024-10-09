@@ -1,19 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-function DropdownInput({
-  itemsList = [],
-  inputType,
-  inputPlaceholder,
-  inputName,
-}) {
+const DropdownInput = forwardRef(function DropdownInput(
+  { itemsList = [], inputType, inputPlaceholder, name, value = "", onChange },
+  ref
+) {
   const [items, setItems] = useState(itemsList);
-  console.log(inputName);
-  const [inputValue, setInputValue] = useState(
-    localStorage.getItem(inputName) || ""
-  );
-
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [filteredItems, setFilteredItems] = useState(itemsList);
   const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
@@ -21,21 +14,18 @@ function DropdownInput({
     setFilteredItems(itemsList);
   }, [itemsList]);
 
-  // Сохраняем значение поля ввода в localStorage
-  useEffect(() => {
-    localStorage.setItem(inputName, inputValue);
-  }, [inputValue, inputName]);
-
   const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value);
+    const inputValue = e.target.value;
+    onChange(inputValue);
     setFilteredItems(
-      items.filter((item) => item.toLowerCase().includes(value.toLowerCase()))
+      items.filter(
+        (item) => item && item.toLowerCase().includes(inputValue.toLowerCase())
+      )
     );
   };
 
   const handleItemClick = (item) => {
-    setInputValue(item);
+    onChange(item);
     setShowDropdown(false);
   };
 
@@ -46,13 +36,16 @@ function DropdownInput({
   return (
     <div className="dropdown">
       <input
-        id={inputName}
+        id={name}
+        name={name}
         type={inputType || "text"}
-        value={inputValue}
+        value={value || ""}
         onChange={handleInputChange}
         onClick={handleDropdownToggle}
-        placeholder={inputPlaceholder || "Select an item"}
+        placeholder={inputPlaceholder || "Выберите элемент"}
         className="data-inputs"
+        ref={ref}
+        autoComplete="off"
       />
       <AnimatePresence>
         {showDropdown && (
@@ -65,7 +58,7 @@ function DropdownInput({
           >
             {filteredItems.length > 0 ? (
               filteredItems.map((item, index) => (
-                <div key={item}>
+                <div key={index}>
                   <div
                     className="dropdown-menu__item"
                     onClick={() => handleItemClick(item)}
@@ -75,19 +68,17 @@ function DropdownInput({
                   {filteredItems.length > 1 &&
                   index !== filteredItems.length - 1 ? (
                     <div className="dropdown__line"></div>
-                  ) : (
-                    ""
-                  )}
+                  ) : null}
                 </div>
               ))
             ) : (
-              <li>Нет вариантов</li>
+              <div className="dropdown-menu__item">Нет вариантов</div>
             )}
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-}
+});
 
 export default DropdownInput;

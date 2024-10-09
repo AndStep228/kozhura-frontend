@@ -21,27 +21,22 @@ export default function RegistrationForm() {
 
   const onSubmit = async (data) => {
     try {
-      const userData = {
-        username: data.email, // Замените "email" на то, что требуется серверу
-        password: data.password,
-        phone: data.phone,
-      };
-      console.log(JSON.stringify(userData));
-      // Отправляем POST-запрос с данными
+      const formData = new FormData();
+      formData.append("username", data.email);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      formData.append("phone", data.phone);
+
       const response = await fetch(
-        "https://api.dev.kozhura.school/api/courses/register_user/",
+        "https://api.dev.kozhura.school/api/auth/users/",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData), // Преобразуем данные в JSON
+          body: formData, // Отправляем данные как form-data
         }
       );
 
-      // Если сервер вернул успешный ответ
       if (response.ok) {
-        console.log("Регистрация прошла успешно:", userData);
+        console.log("Регистрация прошла успешно:", data);
         reset(); // Сброс формы
         setShouldRenderMessage(true); // Показываем сообщение об успехе
 
@@ -50,15 +45,18 @@ export default function RegistrationForm() {
         }, 3000);
       } else {
         const errorData = await response.json();
-        console.log("Ошибка регистрации:", errorData.username);
-        setWrongMessage(errorData.username);
+        console.log("Ошибка регистрации:", errorData);
+
+        let errorMessage = Object.values(errorData).join("\n");
+
+        setWrongMessage(errorMessage);
 
         setShouldRenderMessage(true); // Показываем сообщение об успехе
 
         setTimeout(() => {
           setWrongMessage();
           setShouldRenderMessage(false); // Скрываем сообщение через 3 секунды
-        }, 3000);
+        }, 4000);
       }
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
@@ -177,7 +175,7 @@ export default function RegistrationForm() {
             initial={{ opacity: 0, y: -10, x: -10 }}
             animate={{ opacity: 1, y: 0, x: 0 }}
             exit={{ opacity: 0, y: -10, x: -10 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 1, ease: "backInOut" }}
             className="form__success alert"
           >
             {WrongMessage}

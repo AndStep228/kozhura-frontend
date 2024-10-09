@@ -3,6 +3,7 @@ import { useForm, Controller, setFocus } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import Button from "../Button";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function EnterPage() {
   const {
@@ -14,32 +15,40 @@ export default function EnterPage() {
     shouldFocusError: false,
   });
 
+  const [shouldRenderMessage, setShouldRenderMessage] = useState(false);
+  const [WrongMessage, setWrongMessage] = useState(false);
+
   const onSubmit = async (data) => {
     try {
-      const userData = {
-        username: data.email, // Замените "email" на то, что требуется серверу
-        password: data.password,
-      };
-      console.log(JSON.stringify(userData));
-      // Отправляем POST-запрос с данными
+      const formData = new FormData();
+      formData.append("username", data.email);
+      formData.append("password", data.password);
+
       const response = await fetch(
-        "https://api.dev.kozhura.school/api/auth/login",
+        "https://api.dev.kozhura.school/auth/token/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData), // Преобразуем данные в JSON
+          body: formData, // Отправляем данные как form-data
         }
       );
 
-      // Если сервер вернул успешный ответ
       if (response.ok) {
-        console.log("Вход прошлел успешно:", userData);
-        reset(); // Сброс формы
+        console.log("Вход успешен:", response);
+        reset();
       } else {
-        const errorData = await response.json();
-        console.log("Ошибка регистрации:", errorData.username);
+        const errorData = response;
+
+        console.log(errorData);
+        let errorMessage = Object.values(errorData).join("\n");
+
+        setWrongMessage(errorMessage);
+
+        setShouldRenderMessage(true); // Показываем сообщение об успехе
+
+        setTimeout(() => {
+          setWrongMessage();
+          setShouldRenderMessage(false); // Скрываем сообщение через 3 секунды
+        }, 4000);
       }
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
@@ -58,12 +67,11 @@ export default function EnterPage() {
                 rules={{
                   required: "Email обязателен",
                   pattern: {
-                    value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                     message: "Введите корректный email",
                   },
                 }}
                 render={({ field }) => (
-                  <input {...field} placeholder="Почта" type="email" />
+                  <input {...field} placeholder="Почта" type="text" />
                 )}
               />
               {errors.email && (
@@ -89,6 +97,31 @@ export default function EnterPage() {
                 Забыли пароль?
               </Link>
               <Button btnType="submit" buttonTxt="Войти" />
+              <AnimatePresence>
+                {shouldRenderMessage && !WrongMessage ? (
+                  <motion.span
+                    initial={{ opacity: 0, y: -10, x: -10 }}
+                    animate={{ opacity: 1, y: 0, x: 0 }}
+                    exit={{ opacity: 0, y: -10, x: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="form__success"
+                  >
+                    Вход успешен
+                  </motion.span>
+                ) : WrongMessage ? (
+                  <motion.span
+                    initial={{ opacity: 0, y: -10, x: -10 }}
+                    animate={{ opacity: 1, y: 0, x: 0 }}
+                    exit={{ opacity: 0, y: -10, x: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="form__success alert"
+                  >
+                    {WrongMessage}
+                  </motion.span>
+                ) : (
+                  ""
+                )}
+              </AnimatePresence>
               <Link to="#" className="forgot-pass">
                 Еще нет аккаунта? Зарегистрируйтесь
               </Link>

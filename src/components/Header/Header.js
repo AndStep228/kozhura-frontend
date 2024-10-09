@@ -1,141 +1,200 @@
-import React, { Component, useEffect, useState } from "react";
-import { withRouter } from "../withRouter";
+import React, { useEffect, useState, useRef, useContext } from "react";
+import { useLocation } from "react-router-dom";
 import HeaderLink from "./HeaderLink";
 import HeaderLogo from "./HeaderLogo";
 import HeaderMenu from "./HeaderMenu";
+import { AnimatePresence, motion } from "framer-motion";
+import { AnimationContext } from "../AnimationContext";
 
-export class Header extends Component {
-  constructor(props) {
-    super(props);
+function Header() {
+  const { shouldAnimate } = useContext(AnimationContext);
+  const [didBurgerPressed, setDidBurgerPressed] = useState(false);
+  const containerRef = useRef(null);
+  const location = useLocation();
 
-    this.containerRef = React.createRef();
-    this.handleResize = this.handleResize.bind(this);
-    this.windowScroll = this.windowScroll.bind(this);
-    this.state = {
-      didBurgerTrue: false,
-      didBurgerPressed: false,
-      falseBurger: false,
-    };
-  }
+  const variantsYMinus = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
 
-  componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
-    window.addEventListener("scroll", this.windowScroll);
-    this.handleResize();
-  }
+  const variantsXOpacity = {
+    hidden: { opacity: 0, x: -500 },
+    visible: { opacity: 0.5, x: 0 },
+  };
 
-  handleResize() {
-    if (this.containerRef.current) {
-      const containerWidth = this.containerRef.current.offsetWidth;
-      if (containerWidth <= 1200) {
-        this.setState((prevState) => ({
-          didBurgerTrue: (prevState.didBurgerTrue = true),
-        }));
-      } else {
-        this.setState((prevState) => ({
-          didBurgerTrue: (prevState.didBurgerTrue = false),
-        }));
-      }
+  const variantsXMinus = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const variantsXPlus = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const headerLinks = [
+    { LinkTxt: "О нас", Link: "/about-us", delay: 0 },
+    { LinkTxt: "Библиотека", Link: "/library", delay: 0.1 },
+    { LinkTxt: "Новости", Link: "/news", delay: 0.2 },
+  ];
+
+  const [didBurgerTrue, setDidBurgerTrue] = useState(false);
+
+  const handleResize = () => {
+    if (containerRef.current) {
+      const containerWidth = containerRef.current.offsetWidth;
+      setDidBurgerTrue(containerWidth <= 1200);
     }
-  }
+  };
 
-  windowScroll() {
-    this.setState((prevState) => ({
-      didBurgerPressed: (prevState.didBurgerPressed = false),
-    }));
+  const resetBurgerState = () => {
+    setDidBurgerPressed(false);
     document.body.style.overflow = "";
-  }
+  };
 
-  burgerPressed = () => {
-    const containerWidth = this.containerRef.current.offsetWidth;
+  const burgerPressed = () => {
+    const containerWidth = containerRef.current.offsetWidth;
+    const newState = !didBurgerPressed;
+    setDidBurgerPressed(newState);
 
-    this.setState((prevState) => ({
-      didBurgerPressed: !prevState.didBurgerPressed,
-    }));
-
-    if (containerWidth <= 768 && this.state.didBurgerPressed === false) {
+    if (containerWidth <= 768 && newState) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
   };
 
-  headerClose = (event) => {
-    if (event.target !== event.currentTarget) {
-      document.body.style.overflow = "";
-      this.setState((prevState) => ({
-        didBurgerPressed: !prevState.didBurgerPressed,
-      }));
-    }
-  };
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("scroll", resetBurgerState);
+    handleResize();
 
-  render() {
-    const { didBurgerPressed } = this.state;
-    const { location } = this.props;
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", resetBurgerState);
+    };
+  }, []);
 
-    const headerClass =
-      location.pathname === "/personal-account"
-        ? "header header-pa"
-        : location.pathname !== "/" &&
-          location.pathname !== "/about-us" &&
-          location.pathname !== "/enter-page" &&
-          location.pathname !== "/employer"
-        ? "header header-bkg"
-        : "header";
+  useEffect(() => {
+    resetBurgerState();
+  }, [location]);
 
-    if (this.state.didBurgerTrue === false) {
-      return (
-        <header id="header" className={headerClass}>
-          <div ref={this.containerRef} className="container">
-            <div className="header__block">
-              <HeaderLogo LogoLink="/" Logo="/img/kozhura_white.svg" />
-              <div className="header-links">
-                <HeaderLink LinkTxt="О нас" Link="/about-us" />
-                <HeaderLink LinkTxt="Библиотека" Link="/library" />
-                <HeaderLink LinkTxt="Новости" Link="/news" />
-              </div>
-              <div className="header-ex-links">
-                <HeaderLink LinkTxt="Работодатель" Link="/employer" />
-                <a
-                  className="header-links__item"
-                  target="_blank"
-                  href="https://kozhura-nsk.tilda.ws/"
-                >
-                  KOZHURA_BIM
-                </a>
-                <HeaderLink LinkImg="/img/header_youtube.svg" />
-              </div>
-            </div>
-          </div>
-          <div className="header__line"></div>
-        </header>
-      );
+  const headerClass = (() => {
+    if (location.pathname === "/personal-account") {
+      return "header header-pa";
+    } else if (
+      !["/", "/about-us", "/enter-page", "/employer"].includes(
+        location.pathname
+      )
+    ) {
+      return "header header-bkg";
     } else {
-      return (
-        <header id="header" className={headerClass}>
-          <div ref={this.containerRef} className="container">
-            <div className="header__block">
-              <HeaderLogo LogoLink="/" Logo="/img/kozhura_white.svg" />
-              <div className="header-links">
+      return "header";
+    }
+  })();
+
+  return (
+    <motion.header id="header" className={headerClass}>
+      <div ref={containerRef} className="container">
+        <div className="header__block">
+          <motion.div
+            variants={variantsXMinus}
+            initial="hidden"
+            animate={shouldAnimate ? "visible" : "hidden"}
+            transition={{ duration: 1, ease: "backInOut" }}
+          >
+            <HeaderLogo LogoLink="/" Logo="/img/kozhura_white.svg" />
+          </motion.div>
+          <div className="header-links">
+            {!didBurgerTrue ? (
+              headerLinks.map(({ LinkTxt, Link, delay }, index) => (
+                <motion.div
+                  key={index}
+                  variants={variantsYMinus}
+                  initial="hidden"
+                  animate={shouldAnimate ? "visible" : "hidden"}
+                  transition={{ duration: 1, ease: "backInOut", delay }}
+                >
+                  <HeaderLink LinkTxt={LinkTxt} Link={Link} />
+                </motion.div>
+              ))
+            ) : (
+              <motion.div
+                variants={variantsXPlus}
+                initial="hidden"
+                animate={shouldAnimate ? "visible" : "hidden"}
+                transition={{ duration: 1, ease: "backInOut" }}
+              >
                 <HeaderLink
                   didBurgerPressed={didBurgerPressed}
-                  onClick={this.burgerPressed}
+                  onClick={burgerPressed}
                   IsBurger={true}
                 />
-                <HeaderMenu
-                  onClick={this.headerClose}
-                  className={`burger__block ${
-                    didBurgerPressed ? "active" : ""
-                  }`}
-                />
-              </div>
-            </div>
+              </motion.div>
+            )}
           </div>
-          <div className="header__line"></div>
-        </header>
-      );
-    }
-  }
+          {!didBurgerTrue && (
+            <div className="header-ex-links">
+              <motion.div
+                variants={variantsYMinus}
+                initial="hidden"
+                animate={shouldAnimate ? "visible" : "hidden"}
+                transition={{ duration: 1, ease: "backInOut", delay: 0.4 }}
+              >
+                <HeaderLink LinkTxt="Работодатель" Link="/employer" />
+              </motion.div>
+              <motion.a
+                variants={variantsYMinus}
+                initial="hidden"
+                animate={shouldAnimate ? "visible" : "hidden"}
+                transition={{ duration: 1, ease: "backInOut", delay: 0.5 }}
+                className="header-links__item"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://kozhura-nsk.tilda.ws/"
+              >
+                KOZHURA_BIM
+              </motion.a>
+              <motion.div
+                variants={variantsYMinus}
+                initial="hidden"
+                animate={shouldAnimate ? "visible" : "hidden"}
+                transition={{ duration: 1, ease: "backInOut", delay: 0.6 }}
+              >
+                <HeaderLink LinkImg="/img/header_youtube.svg" />
+              </motion.div>
+            </div>
+          )}
+        </div>
+      </div>
+      <motion.div
+        variants={variantsXOpacity}
+        initial="hidden"
+        animate={shouldAnimate ? "visible" : "hidden"}
+        transition={{ duration: 1, ease: "easeInOut", delay: 0 }}
+        className="header__line"
+      ></motion.div>
+      {didBurgerTrue && (
+        <AnimatePresence mode="wait">
+          {didBurgerPressed && (
+            <motion.div
+              key="burgerMenu"
+              className="burger__wrapper"
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -100 }}
+              transition={{ duration: 0.6, ease: "backInOut" }}
+            >
+              <HeaderMenu
+                onClick={resetBurgerState}
+                className="burger__block"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+    </motion.header>
+  );
 }
 
-export default withRouter(Header);
+export default Header;

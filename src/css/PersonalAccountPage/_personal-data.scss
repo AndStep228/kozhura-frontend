@@ -1,53 +1,35 @@
-.personal-data {
-  display: grid;
-  gap: 50px;
-  grid-auto-rows: max-content;
-  grid-template-rows: repeat(auto-fill, minmax(auto, max-content));
-}
-
-.fio__block {
-  display: grid;
-  height: max-content;
-  grid-template-rows: repeat(2, minmax(auto, max-content));
-  grid-template-columns: repeat(3, minmax(auto, max-content));
-  gap: 20px;
-
-  input {
-    grid-row: 2;
-  }
-}
-
 .birth__block {
   height: max-content;
-  grid-template-rows: repeat(2, minmax(auto, max-content));
   display: grid;
   gap: 20px;
 
   div {
     display: grid;
-    grid-template-columns: repeat(3, minmax(auto, max-content));
-    gap: 0 20px;
-  }
-
-  input {
-    grid-row: 2;
-  }
-
-  .data__title {
-    grid-column: 1/ 4;
+    grid-template-columns: repeat(auto-fill, minmax(145px, 145px));
+    gap: 20px;
   }
 }
 
 .gender__block {
   height: max-content;
-  grid-template-rows: repeat(2, minmax(auto, max-content));
   display: grid;
   gap: 20px;
 }
 
-.country__block {
-  height: max-content;
-  grid-template-rows: repeat(2, minmax(auto, max-content));
-  display: grid;
-  gap: 20px;
+@media (max-width: 605px) {
+  .birth__block {
+    div {
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+
+      input:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+}
+
+@media (max-width: 485px) {
+  .gender__block {
+    grid-template-columns: 1fr;
+  }
 }

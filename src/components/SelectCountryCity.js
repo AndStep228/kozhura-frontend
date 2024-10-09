@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import DropdownInput from "./PersonalAccountPage/DropdownInput";
 import countries from "i18n-iso-countries";
 import ru from "i18n-iso-countries/langs/ru.json";
 
 countries.registerLocale(ru);
 
-export default function SelectCountryCity(setGlobalLoading) {
+export default function SelectCountryCity(props) {
   const [countryNames, setCountryNames] = useState([]);
-
+  const [cityNames, setCityNames] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const headers = new Headers();
-    headers.append(
-      "X-CSCAPI-KEY",
-      "ck9qc3p6MlFEVm1NRDNqQnd4azVLb1hBdktUTW13TkU3WTJwS1FNeA=="
-    );
+    const countryApiKey = process.env.REACT_APP_COUNTRY_API_KEY;
+    headers.append("X-CSCAPI-KEY", `${countryApiKey}`);
 
     const requestOptions = {
       method: "GET",
@@ -26,15 +24,20 @@ export default function SelectCountryCity(setGlobalLoading) {
     fetch("https://api.countrystatecity.in/v1/countries", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        // Получаем список кодов стран (например, "US", "RU")
-        const countryCodes = result.map((country) => country.iso2);
+        const countryCodes = result.map((country) => country.name);
 
-        // Используем библиотеку для перевода кодов стран на русский язык
-        const translatedCountryNames = countryCodes.map(
-          (code) => countries.getName(code, "ru") // 'ru' — это код для русского языка
-        );
+        setCountryNames(countryCodes);
+      })
+      .catch((error) => console.log("error", error));
 
-        setCountryNames(translatedCountryNames);
+    fetch(
+      `https://api.countrystatecity.in/v1/countries/RU/cities`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        const cityCodes = result.map((city) => city.name);
+        setCityNames(cityCodes);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -44,12 +47,21 @@ export default function SelectCountryCity(setGlobalLoading) {
   }
 
   return (
-    <div>
+    <div className="country-city__wrapper">
       {countryNames.length > 0 ? (
         <DropdownInput
           inputName="country"
           inputPlaceholder="Страна"
           itemsList={countryNames}
+        />
+      ) : (
+        <p>Загрузка...</p>
+      )}
+      {cityNames.length > 0 ? (
+        <DropdownInput
+          inputName="city"
+          inputPlaceholder="Город"
+          itemsList={cityNames}
         />
       ) : (
         <p>Загрузка...</p>

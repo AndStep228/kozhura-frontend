@@ -1,168 +1,133 @@
 import React from "react";
+import classNames from "classnames";
+import { motion } from "framer-motion"; // Импортируем motion
 import YtVideo from "../YtVideo";
-
 import Button from "../Button";
 
 export default function PartnerItem(props) {
-  if (!props.TabletWrap && !props.MobileWrap) {
-    if (!props.LeftFlow) {
-      return (
-        <div className="partners__block">
-          <div className="partners__promo">
-            <img src={props.PartnerImg} alt={props.PartnerImgAlt} />
-            <div className="promo__video">
-              <YtVideo videoLink={props.PartnerVideoLink} />
-            </div>
-          </div>
-          <div className="partners__info">
-            <h2>{props.PartnerTitle}</h2>
-            <h5>{props.PartnerSubtitle}</h5>
-            <div className="info__btns">
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Все курсы"
-              />
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Полный курс"
-              />
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Базовый курс"
-              />
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="partners__block left-wrap">
-          <div className="partners__info">
-            <h2>{props.PartnerTitle}</h2>
-            <h5>{props.PartnerSubtitle}</h5>
-            <div className="info__btns">
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Все курсы"
-              />
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Полный курс"
-              />
-              <Button
-                isPageLink={true}
-                btnLink="/library"
-                buttonTxt="Базовый курс"
-              />
-            </div>
-          </div>
-          <div className="partners__promo">
-            <img src={props.PartnerImg} alt={props.PartnerImgAlt} />
-            <div className="promo__video">
-              <YtVideo videoLink={props.PartnerVideoLink} />
-            </div>
-          </div>
-        </div>
-      );
-    }
-  } else if (props.TabletWrap && !props.MobileWrap) {
-    if (!props.LeftFlow) {
-      return (
-        <div className="partners__block">
-          <div className="partners__promo">
-            <img src={props.PartnerImg} alt={props.PartnerImgAlt} />
-            <div className="promo__video">
-              <YtVideo videoLink={props.PartnerVideoLink} />
-            </div>
-          </div>
-          <div className="partners__info">
-            <h2>{props.PartnerTitle}</h2>
-            <h5>{props.PartnerSubtitle}</h5>
-          </div>
-          <div className="info__btns">
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Все курсы"
-            />
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Полный курс"
-            />
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Базовый курс"
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="partners__block left-wrap">
-          <div className="partners__info">
-            <h2>{props.PartnerTitle}</h2>
-            <h5>{props.PartnerSubtitle}</h5>
-          </div>
-          <div className="partners__promo">
-            <img src={props.PartnerImg} alt={props.PartnerImgAlt} />
-            <div className="promo__video">
-              <YtVideo videoLink={props.PartnerVideoLink} />
-            </div>
-          </div>
-          <div className="info__btns">
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Все курсы"
-            />
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Полный курс"
-            />
-            <Button
-              isPageLink={true}
-              btnLink="/library"
-              buttonTxt="Базовый курс"
-            />
-          </div>
-        </div>
-      );
-    }
-  } else if (!props.TabletWrap && props.MobileWrap) {
-    return (
-      <div className="partners__block">
-        <div className="partners__promo">
-          <img src={props.PartnerImg} alt={props.PartnerImgAlt} />
-          <div className="promo__video">
-            <YtVideo videoLink={props.PartnerVideoLink} />
-          </div>
-        </div>
-        <div className="partners__info">
-          <h2>{props.PartnerTitle}</h2>
-          <h5>{props.PartnerSubtitle}</h5>
-        </div>
-        <div className="info__btns">
-          <Button isPageLink={true} btnLink="/library" buttonTxt="Все курсы" />
+  const {
+    TabletWrap,
+    MobileWrap,
+    LeftFlow,
+    PartnerImg,
+    PartnerImgAlt,
+    PartnerVideoLink,
+    PartnerTitle,
+    PartnerSubtitle,
+  } = props;
+
+  // Определяем класс для блока партнеров с использованием classNames
+  const blockClass = classNames("partners__block", {
+    "left-wrap": LeftFlow,
+  });
+
+  // Массив данных для кнопок, чтобы избежать дублирования
+  const buttons = [
+    { btnLink: "/library", buttonTxt: "Все курсы" },
+    { btnLink: "/library", buttonTxt: "Полный курс" },
+    { btnLink: "/library", buttonTxt: "Базовый курс" },
+  ];
+
+  // Анимационные варианты
+  const variantsXMinus = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  const variantsYMinus = {
+    hidden: { opacity: 0, y: -50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const variantsYPlus = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  // Компонент для отображения кнопок с анимацией
+  const RenderButtons = () => (
+    <div className="info__btns">
+      {buttons.map((btn, index) => (
+        <motion.div
+          key={index}
+          variants={variantsYMinus}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+            delay: 0.4 + index * 0.2,
+          }} // Задержка для последовательного появления
+        >
           <Button
             isPageLink={true}
-            btnLink="/library"
-            buttonTxt="Полный курс"
+            btnLink={btn.btnLink}
+            buttonTxt={btn.buttonTxt}
           />
-          <Button
-            isPageLink={true}
-            btnLink="/library"
-            buttonTxt="Базовый курс"
-          />
-        </div>
-      </div>
-    );
-  }
+        </motion.div>
+      ))}
+    </div>
+  );
+
+  // Компонент для отображения промо блока с анимацией
+  const Promo = (
+    <motion.div
+      className="partners__promo"
+      variants={variantsXMinus}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0 }} // Первая задержка
+    >
+      <img src={PartnerImg} alt={PartnerImgAlt} />
+      <motion.div
+        className="promo__video"
+        variants={variantsXMinus}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }} // Вторая задержка
+      >
+        <YtVideo videoLink={PartnerVideoLink} />
+      </motion.div>
+    </motion.div>
+  );
+
+  // Компонент для отображения информационного блока с анимацией
+  const Info = (
+    <motion.div
+      className="partners__info"
+      variants={variantsYPlus}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }} // Задержка для заголовков
+    >
+      <h2>{PartnerTitle}</h2>
+      <h5>{PartnerSubtitle}</h5>
+      {/* Отображаем кнопки внутри info, только если не TabletWrap и не MobileWrap */}
+      {!(TabletWrap || MobileWrap) && <RenderButtons />}
+    </motion.div>
+  );
+
+  return (
+    <div className={blockClass}>
+      {/* Определяем порядок отображения promo и info на основе LeftFlow */}
+      {LeftFlow ? (
+        <>
+          {Info}
+          {Promo}
+        </>
+      ) : (
+        <>
+          {Promo}
+          {Info}
+        </>
+      )}
+
+      {/* Отображаем кнопки отдельно, если TabletWrap или MobileWrap */}
+      {(TabletWrap || MobileWrap) && <RenderButtons />}
+    </div>
+  );
 }

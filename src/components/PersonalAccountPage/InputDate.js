@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import React, { forwardRef } from "react";
 
-function InputDate() {
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
+const InputDate = forwardRef(function InputDate({ value = {}, onChange }, ref) {
+  const { day = "", month = "", year = "" } = value;
 
   const handleDayChange = (event) => {
-    const value = event.target.value;
-    if (value === "" || (Number(value) >= 1 && Number(value) <= 31)) {
-      setDay(value);
+    const newDay = event.target.value;
+    if (newDay === "" || (Number(newDay) >= 1 && Number(newDay) <= 31)) {
+      onChange({ ...value, day: newDay });
     }
   };
 
   const handleMonthChange = (event) => {
-    const value = event.target.value;
-    if (value === "" || (Number(value) >= 1 && Number(value) <= 12)) {
-      setMonth(value);
+    const newMonth = event.target.value;
+    if (newMonth === "" || (Number(newMonth) >= 1 && Number(newMonth) <= 12)) {
+      onChange({ ...value, month: newMonth });
     }
   };
 
   const handleYearChange = (event) => {
-    const value = event.target.value;
-    if (value.length <= 4) {
-      // Ограничение длины до 4 символов
-      setYear(value);
+    const newYear = event.target.value;
+    if (newYear.length <= 4) {
+      onChange({ ...value, year: newYear });
     }
   };
 
   return (
     <div>
       <input
+        ref={ref}
+        id="day"
+        name="day"
         type="number"
         value={day}
         onChange={handleDayChange}
@@ -39,6 +39,9 @@ function InputDate() {
         min="1"
       />
       <input
+        ref={ref}
+        id="month"
+        name="month"
         type="number"
         value={month}
         onChange={handleMonthChange}
@@ -48,6 +51,9 @@ function InputDate() {
         min="1"
       />
       <input
+        ref={ref}
+        id="year"
+        name="year"
         type="text"
         value={year}
         onChange={handleYearChange}
@@ -57,6 +63,6 @@ function InputDate() {
       />
     </div>
   );
-}
+});
 
 export default InputDate;
