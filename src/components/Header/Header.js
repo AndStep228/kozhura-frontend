@@ -5,12 +5,14 @@ import HeaderLogo from "./HeaderLogo";
 import HeaderMenu from "./HeaderMenu";
 import { AnimatePresence, motion } from "framer-motion";
 import { AnimationContext } from "../AnimationContext";
+import { AuthContext } from "../AuthContext";
 
 function Header() {
   const { shouldAnimate } = useContext(AnimationContext);
   const [didBurgerPressed, setDidBurgerPressed] = useState(false);
   const containerRef = useRef(null);
   const location = useLocation();
+  const { isAuthenticated } = useContext(AuthContext);
 
   const variantsYMinus = {
     hidden: { opacity: 0, y: -50 },
@@ -135,34 +137,40 @@ function Header() {
           </div>
           {!didBurgerTrue && (
             <div className="header-ex-links">
-              <motion.div
-                variants={variantsYMinus}
-                initial="hidden"
-                animate={shouldAnimate ? "visible" : "hidden"}
-                transition={{ duration: 1, ease: "backInOut", delay: 0.4 }}
-              >
-                <HeaderLink LinkTxt="Работодатель" Link="/employer" />
-              </motion.div>
-              <motion.a
-                variants={variantsYMinus}
-                initial="hidden"
-                animate={shouldAnimate ? "visible" : "hidden"}
-                transition={{ duration: 1, ease: "backInOut", delay: 0.5 }}
-                className="header-links__item"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://kozhura-nsk.tilda.ws/"
-              >
-                KOZHURA_BIM
-              </motion.a>
-              <motion.div
-                variants={variantsYMinus}
-                initial="hidden"
-                animate={shouldAnimate ? "visible" : "hidden"}
-                transition={{ duration: 1, ease: "backInOut", delay: 0.6 }}
-              >
-                <HeaderLink LinkImg="/img/header_youtube.svg" />
-              </motion.div>
+              {!isAuthenticated ? (
+                <>
+                  <motion.div
+                    variants={variantsYMinus}
+                    initial="hidden"
+                    animate={shouldAnimate ? "visible" : "hidden"}
+                    transition={{ duration: 1, ease: "backInOut", delay: 0.4 }}
+                  >
+                    <HeaderLink LinkTxt="Работодатель" Link="/employer" />
+                  </motion.div>
+                  <motion.a
+                    variants={variantsYMinus}
+                    initial="hidden"
+                    animate={shouldAnimate ? "visible" : "hidden"}
+                    transition={{ duration: 1, ease: "backInOut", delay: 0.5 }}
+                    className="header-links__item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://kozhura-nsk.tilda.ws/"
+                  >
+                    KOZHURA_BIM
+                  </motion.a>
+                  <motion.div
+                    variants={variantsYMinus}
+                    initial="hidden"
+                    animate={shouldAnimate ? "visible" : "hidden"}
+                    transition={{ duration: 1, ease: "backInOut", delay: 0.6 }}
+                  >
+                    <HeaderLink LinkImg="/img/header_youtube.svg" />
+                  </motion.div>
+                </>
+              ) : (
+                <HeaderLink LinkTxt="Логин" Link="/personal-account" />
+              )}
             </div>
           )}
         </div>

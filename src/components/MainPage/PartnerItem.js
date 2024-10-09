@@ -53,10 +53,9 @@ export default function PartnerItem(props) {
           variants={variantsYMinus}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
           transition={{
             duration: 0.6,
-            ease: "easeOut",
+            ease: "easeInOut",
             delay: 0.4 + index * 0.2,
           }} // Задержка для последовательного появления
         >
@@ -77,8 +76,7 @@ export default function PartnerItem(props) {
       variants={variantsXMinus}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: 0 }} // Первая задержка
+      transition={{ duration: 0.6, ease: "easeInOut", delay: 0 }} // Первая задержка
     >
       <img src={PartnerImg} alt={PartnerImgAlt} />
       <motion.div
@@ -86,8 +84,7 @@ export default function PartnerItem(props) {
         variants={variantsXMinus}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }} // Вторая задержка
+        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }} // Вторая задержка
       >
         <YtVideo videoLink={PartnerVideoLink} />
       </motion.div>
@@ -101,7 +98,6 @@ export default function PartnerItem(props) {
       variants={variantsYPlus}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }} // Задержка для заголовков
     >
       <h2>{PartnerTitle}</h2>

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useForm, Controller, setFocus } from "react-hook-form";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "react-phone-input-2/lib/style.css";
 import Button from "../Button";
 import { AnimatePresence, motion } from "framer-motion";
+import { AuthContext } from "../AuthContext";
 
 export default function EnterPage() {
   const {
@@ -15,43 +17,61 @@ export default function EnterPage() {
     shouldFocusError: false,
   });
 
-  const [shouldRenderMessage, setShouldRenderMessage] = useState(false);
-  const [WrongMessage, setWrongMessage] = useState(false);
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext); // Правильное использование useContext
+  const [WrongMessage, setWrongMessage] = React.useState("");
+  const [shouldRenderMessage, setShouldRenderMessage] = React.useState(false);
 
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("username", data.email);
+      formData.append("email", data.email);
       formData.append("password", data.password);
 
       const response = await fetch(
         "https://api.dev.kozhura.school/auth/token/login",
         {
           method: "POST",
-          body: formData, // Отправляем данные как form-data
+          body: formData,
         }
       );
 
-      if (response.ok) {
-        console.log("Вход успешен:", response);
-        reset();
-      } else {
-        const errorData = response;
+      const responseData = await response.json();
 
-        console.log(errorData);
-        let errorMessage = Object.values(errorData).join("\n");
+      if (response.ok) {
+        console.log("Вход успешен:", responseData);
+        const authToken = responseData.auth_token;
+
+        login(authToken); // Сохраняем токен через контекст
+        navigate("/personal-account");
+        reset(); // Сбрасываем форму
+      } else {
+        console.log("Ошибка ответа:", responseData);
+        let errorMessage = "";
+
+        if (responseData.detail) {
+          errorMessage = responseData.detail;
+        } else {
+          errorMessage = Object.values(responseData).join("\n");
+        }
 
         setWrongMessage(errorMessage);
-
-        setShouldRenderMessage(true); // Показываем сообщение об успехе
+        setShouldRenderMessage(true);
 
         setTimeout(() => {
-          setWrongMessage();
-          setShouldRenderMessage(false); // Скрываем сообщение через 3 секунды
+          setWrongMessage("");
+          setShouldRenderMessage(false);
         }, 4000);
       }
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
+      setWrongMessage("Произошла ошибка. Попробуйте ещё раз.");
+      setShouldRenderMessage(true);
+
+      setTimeout(() => {
+        setWrongMessage("");
+        setShouldRenderMessage(false);
+      }, 4000);
     }
   };
   return (
@@ -67,11 +87,12 @@ export default function EnterPage() {
                 rules={{
                   required: "Email обязателен",
                   pattern: {
+                    value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
                     message: "Введите корректный email",
                   },
                 }}
                 render={({ field }) => (
-                  <input {...field} placeholder="Почта" type="text" />
+                  <input {...field} placeholder="Почта" type="email" />
                 )}
               />
               {errors.email && (
