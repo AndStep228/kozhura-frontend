@@ -1,153 +1,42 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import "react-phone-input-2/lib/style.css";
-import Button from "../Button";
-import { AnimatePresence, motion } from "framer-motion";
-import { AuthContext } from "../AuthContext";
+import DefaultEnterPage from "./DefaultEnterPage";
+import ForgotPassEnterPage from "./ForgotPassEnterPage";
+import RegistrationEnterPage from "./RegistrationEnterPage";
 
 export default function EnterPage() {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm({
-    shouldFocusError: false,
-  });
+  const [forgotPass, setForgotPass] = useState(false);
+  const [regForm, setRegForm] = useState(false);
+  const forgotPassPress = () => {
+    setForgotPass(!forgotPass);
+  };
 
-  const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // Правильное использование useContext
-  const [WrongMessage, setWrongMessage] = React.useState("");
-  const [shouldRenderMessage, setShouldRenderMessage] = React.useState(false);
-
-  const onSubmit = async (data) => {
-    try {
-      const formData = new FormData();
-      formData.append("email", data.email);
-      formData.append("password", data.password);
-
-      const response = await fetch(
-        "https://api.dev.kozhura.school/auth/token/login",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      const responseData = await response.json();
-
-      if (response.ok) {
-        console.log("Вход успешен:", responseData);
-        const authToken = responseData.auth_token;
-
-        login(authToken); // Сохраняем токен через контекст
-        navigate("/personal-account");
-        reset(); // Сбрасываем форму
-      } else {
-        console.log("Ошибка ответа:", responseData);
-        let errorMessage = "";
-
-        if (responseData.detail) {
-          errorMessage = responseData.detail;
-        } else {
-          errorMessage = Object.values(responseData).join("\n");
-        }
-
-        setWrongMessage(errorMessage);
-        setShouldRenderMessage(true);
-
-        setTimeout(() => {
-          setWrongMessage("");
-          setShouldRenderMessage(false);
-        }, 4000);
-      }
-    } catch (error) {
-      console.error("Ошибка при отправке запроса:", error);
-      setWrongMessage("Произошла ошибка. Попробуйте ещё раз.");
-      setShouldRenderMessage(true);
-
-      setTimeout(() => {
-        setWrongMessage("");
-        setShouldRenderMessage(false);
-      }, 4000);
-    }
+  const regFormPress = () => {
+    setForgotPass(false);
+    setRegForm(!regForm);
   };
   return (
     <div id="promo" className="main__promo enter-promo">
       <div className="container">
         <div className="promo__wrapper">
-          <form className="form" onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <Controller
-                name="email"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Email обязателен",
-                  pattern: {
-                    value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/,
-                    message: "Введите корректный email",
-                  },
-                }}
-                render={({ field }) => (
-                  <input {...field} placeholder="Почта" type="email" />
-                )}
-              />
-              {errors.email && (
-                <span className="error">{errors.email.message}</span>
-              )}
-            </div>
-            <div>
-              <Controller
-                name="password"
-                control={control}
-                defaultValue=""
-                rules={{ required: "Пароль обязателен" }}
-                render={({ field }) => (
-                  <input {...field} placeholder="Пароль" type="password" />
-                )}
-              />
-              {errors.password && (
-                <span className="error">{errors.password.message}</span>
-              )}
-            </div>
-            <div className="form__btns">
-              <Link to="#" className="forgot-pass">
-                Забыли пароль?
-              </Link>
-              <Button btnType="submit" buttonTxt="Войти" />
-              <AnimatePresence>
-                {shouldRenderMessage && !WrongMessage ? (
-                  <motion.span
-                    initial={{ opacity: 0, y: -10, x: -10 }}
-                    animate={{ opacity: 1, y: 0, x: 0 }}
-                    exit={{ opacity: 0, y: -10, x: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="form__success"
-                  >
-                    Вход успешен
-                  </motion.span>
-                ) : WrongMessage ? (
-                  <motion.span
-                    initial={{ opacity: 0, y: -10, x: -10 }}
-                    animate={{ opacity: 1, y: 0, x: 0 }}
-                    exit={{ opacity: 0, y: -10, x: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="form__success alert"
-                  >
-                    {WrongMessage}
-                  </motion.span>
-                ) : (
-                  ""
-                )}
-              </AnimatePresence>
-              <Link to="#" className="forgot-pass">
-                Еще нет аккаунта? Зарегистрируйтесь
-              </Link>
-            </div>
-          </form>
+          {!forgotPass && !regForm && (
+            <DefaultEnterPage
+              regFormClick={regFormPress}
+              forgotPassClick={forgotPassPress}
+            />
+          )}
+          {forgotPass && !regForm && (
+            <ForgotPassEnterPage
+              regFormClick={regFormPress}
+              forgotPassClick={forgotPassPress}
+            />
+          )}
+          {!forgotPass && regForm && (
+            <RegistrationEnterPage
+              regForm={regForm}
+              regFormClick={regFormPress}
+            />
+          )}
         </div>
       </div>
     </div>

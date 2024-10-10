@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HeaderLink(props) {
-  if (props.LinkImg !== undefined) {
+  if (props.LinkImg !== undefined && props.onClick === undefined) {
     return (
       <a
         target="blank"
@@ -12,6 +12,12 @@ export default function HeaderLink(props) {
         {props.LinkTxt}
         <img alt="youtubeLink" src={props.LinkImg} />
       </a>
+    );
+  } else if (props.LinkImg !== undefined && props.onClick) {
+    return (
+      <div className="header-links__item">
+        <img onClick={props.onClick} alt="headerImg" src={props.LinkImg} />
+      </div>
     );
   } else if (props.LinkImg !== undefined && props.LinkTxt === undefined) {
     return <Link className="header-links__item" to={props.Link}></Link>;

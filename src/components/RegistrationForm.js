@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useForm, Controller, setFocus } from "react-hook-form";
+import React, { useState, useContext } from "react";
+import { useForm, Controller } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Button from "./Button";
 import { AnimatePresence, motion } from "framer-motion";
+import { AuthContext } from "./AuthContext";
+import { useNavigate } from "react-router-dom"; // Импортируем useNavigate
 
-export default function RegistrationForm() {
+export default function RegistrationForm({ regForm, regFormClick }) {
   const {
     handleSubmit,
     control,
@@ -17,10 +19,15 @@ export default function RegistrationForm() {
   });
 
   const [shouldRenderMessage, setShouldRenderMessage] = useState(false);
-  const [WrongMessage, setWrongMessage] = useState(false);
+  const [WrongMessage, setWrongMessage] = useState("");
+
+  const { login } = useContext(AuthContext); // Получаем функцию login из контекста
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
+      // Отправка данных для регистрации
       const formData = new FormData();
       formData.append("username", data.email);
       formData.append("email", data.email);
@@ -38,11 +45,50 @@ export default function RegistrationForm() {
       if (response.ok) {
         console.log("Регистрация прошла успешно:", data);
         reset(); // Сброс формы
-        setShouldRenderMessage(true); // Показываем сообщение об успехе
 
-        setTimeout(() => {
-          setShouldRenderMessage(false); // Скрываем сообщение через 3 секунды
-        }, 3000);
+        // Автоматический вход после успешной регистрации
+        const loginResponse = await fetch(
+          "https://api.dev.kozhura.school/auth/token/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: data.email,
+              password: data.password,
+            }),
+          }
+        );
+
+        if (loginResponse.ok) {
+          const loginData = await loginResponse.json();
+          const authToken = loginData.auth_token;
+          login(authToken);
+          setShouldRenderMessage(true);
+
+          setTimeout(() => {
+            setShouldRenderMessage(false);
+          }, 3000);
+        } else {
+          const loginErrorData = await loginResponse.json();
+          console.log("Ошибка при автоматическом входе:", loginErrorData);
+          let loginErrorMessage = "Ошибка при автоматическом входе.";
+          if (loginErrorData.detail) {
+            loginErrorMessage = loginErrorData.detail;
+          } else if (loginErrorData.errors) {
+            loginErrorMessage = Object.values(loginErrorData.errors)
+              .flat()
+              .join(" ");
+          }
+          setWrongMessage(loginErrorMessage);
+          setShouldRenderMessage(true);
+
+          setTimeout(() => {
+            setWrongMessage("");
+            setShouldRenderMessage(false); // Скрываем сообщение через 4 секунды
+          }, 4000);
+        }
       } else {
         const errorData = await response.json();
         console.log("Ошибка регистрации:", errorData);
@@ -60,6 +106,13 @@ export default function RegistrationForm() {
       }
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
+      setWrongMessage("Произошла ошибка. Попробуйте ещё раз.");
+      setShouldRenderMessage(true);
+
+      setTimeout(() => {
+        setWrongMessage("");
+        setShouldRenderMessage(false);
+      }, 4000);
     }
   };
 
@@ -152,12 +205,18 @@ export default function RegistrationForm() {
       </div>
       <div className="form__btns">
         <Button btnType="submit" buttonTxt="Зарегистрироваться" />
-        <Button
-          btnType="button"
-          buttonTxt="Войти"
-          isPageLink={true}
-          btnLink="/enter-page"
-        />
+        {!regForm ? (
+          <Button
+            btnType="button"
+            buttonTxt="Войти"
+            isPageLink={true}
+            btnLink="/enter-page"
+          />
+        ) : (
+          <p onClick={regFormClick} className="form-quest">
+            Назад
+          </p>
+        )}
       </div>
       <AnimatePresence>
         {shouldRenderMessage && !WrongMessage ? (

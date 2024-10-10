@@ -24,6 +24,12 @@
     }
   }
 
+  .header-ex-links {
+    img {
+      filter: invert(0.3);
+    }
+  }
+
   .header__logo {
     filter: invert(0.3);
   }
@@ -64,6 +70,14 @@
   align-items: center;
 }
 
+.mobile-header__links {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 40px;
+  width: 141px;
+}
+
 .header-links {
   justify-self: center;
   display: grid;
@@ -78,6 +92,11 @@
   gap: 40px;
   grid-auto-flow: column;
   align-items: center;
+  position: relative;
+
+  img {
+    cursor: pointer;
+  }
 }
 
 .header-links__item {
@@ -231,6 +250,34 @@
 
     &:hover {
       opacity: 60%;
+    }
+  }
+}
+
+.login__wrapper {
+  background: #fff;
+  width: max-content;
+  padding: 30px 15px 15px 15px;
+  position: absolute;
+  z-index: 999;
+  top: 80px;
+  right: 0;
+  border-radius: 20px;
+  box-shadow: -7px 7px 9px rgba(0, 0, 0, 0.2);
+}
+
+.login__block {
+  display: grid;
+  gap: 30px;
+
+  a {
+    font-size: 20px;
+    font-weight: 500;
+    opacity: 80%;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 40%;
     }
   }
 }

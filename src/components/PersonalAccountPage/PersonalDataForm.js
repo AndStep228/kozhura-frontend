@@ -25,18 +25,6 @@ function PersonalDataForm({ mobileVersionMenu, courseMenuClick }) {
     },
   });
 
-  const { logout } = useContext(AuthContext);
-
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("Вы действительно хотите выйти?");
-    if (confirmLogout) {
-      logout();
-      navigate("/enter-page"); // Перенаправляем на страницу логина
-    }
-  };
-
   const { userData, authToken, setUserData } = useContext(AuthContext);
 
   const genders = ["мужской", "женский"];
@@ -108,7 +96,6 @@ function PersonalDataForm({ mobileVersionMenu, courseMenuClick }) {
         {mobileVersionMenu && (
           <Button onClick={courseMenuClick} buttonTxt="Меню" />
         )}
-        <Button buttonTxt="logout" onClick={handleLogout} />
       </div>
 
       <form className="form-pa" onSubmit={handleSubmit(onSubmit)}>
