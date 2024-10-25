@@ -31,13 +31,13 @@ function PersonalDataForm({ mobileVersionMenu, courseMenuClick }) {
 
   const onSubmit = async (data) => {
     try {
-      if (!userData || !userData.id) {
+      if (!userData || !userData.pk) {
         console.error("Нет данных пользователя или ID");
         toast.error("Ошибка: Не удалось определить пользователя.");
         return;
       }
 
-      const userId = userData.id;
+      const userId = userData.pk;
 
       // Преобразование даты рождения в формат YYYY-MM-DD
       const { day, month, year } = data.date_of_birth;

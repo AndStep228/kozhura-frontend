@@ -17,6 +17,10 @@ const PersonalAccountPage = lazy(() =>
 const EnterPage = lazy(() => import("./components/EnterPages/EnterPage"));
 const NewsPage = lazy(() => import("./components/NewsPage/NewsPage"));
 const LibraryPage = lazy(() => import("./components/LibraryPage/LibraryPage"));
+const CoursePreviewPage = lazy(() =>
+  import("./components/CoursePreviewPage/CoursePreviewPage")
+);
+
 const CoursePage = lazy(() => import("./components/CoursePage/CoursePage"));
 const EmployerPage = lazy(() =>
   import("./components/EmployerPage/EmployerPage")
@@ -28,6 +32,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const { setShouldAnimate } = useContext(AnimationContext);
+  const hideFooter = location.pathname === "/p-course";
 
   useEffect(() => {
     setIsLoading(true);
@@ -77,10 +82,14 @@ function App() {
             <Route path="employer" element={<EmployerPage />} />
             <Route
               path="course/:id"
+              element={<CoursePreviewPage setGlobalLoading={setIsLoading} />}
+            />
+            <Route
+              path="p-course/:courseId"
               element={<CoursePage setGlobalLoading={setIsLoading} />}
             />
           </Routes>
-          <Footer key="footer" />
+          {!hideFooter && <Footer key="footer" />}
         </Suspense>
       </div>
     </>

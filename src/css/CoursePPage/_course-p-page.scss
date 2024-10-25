@@ -1,0 +1,27 @@
+/* Учитываем высоту шапки */
+.course-p-page {
+  display: flex;
+  height: calc(100vh - 60px); /* Высота окна минус высота шапки */
+  margin-top: 60px; /* Отступ для фиксированной шапки */
+}
+
+@media (max-width: 768px) {
+  .course-p-page {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+}
+
+.content-area {
+  flex: 1;
+  overflow: auto;
+  margin-left: 280px; /* Ширина бокового меню */
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    margin-left: 0;
+  }
+}
+
+/* Остальные стили */

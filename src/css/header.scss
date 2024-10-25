@@ -5,6 +5,39 @@
   z-index: 100;
 }
 
+.header-p-course {
+  background: #414141;
+  height: 70px !important;
+  position: fixed;
+
+  .header__logo {
+    width: 75px;
+    height: 36px;
+  }
+
+  .header__block {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 15px;
+  }
+
+  .header-links__item {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .mobile-header__links {
+    justify-self: flex-end;
+    justify-items: flex-end;
+    width: 120px;
+  }
+
+  .header__burger {
+    justify-self: flex-end;
+  }
+}
+
 .header-bkg {
   background: $main-color;
 

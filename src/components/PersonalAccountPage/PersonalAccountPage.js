@@ -6,7 +6,7 @@ import SelectCountryCity from "../SelectCountryCity";
 import PersonalDataForm from "./PersonalDataForm";
 import EducationForm from "./EducationForm";
 import ChangePasswordForm from "./ChangePasswordForm";
-import CoursePage from "./CoursePage";
+import CoursePagePA from "./CoursePagePA";
 import EmployerForm from "./EmployerForm";
 
 export default function PersonalAccountPage() {
@@ -24,7 +24,7 @@ export default function PersonalAccountPage() {
       id: "Мои курсы",
       key: "courses",
       component: (
-        <CoursePage
+        <CoursePagePA
           mobileVersionMenu={mobileVersionMenu}
           courseMenuClick={courseMenuClick}
         />

@@ -1,0 +1,128 @@
+/* Убираем padding у .sidebar */
+.sidebar {
+  width: 280px;
+  background-color: #414141;
+  overflow-y: auto;
+  position: fixed;
+  z-index: 1000;
+  top: 71px; /* Высота шапки */
+  bottom: 0; /* Убираем нижний отступ */
+  left: 0;
+}
+
+/* Добавляем padding к .course-title */
+.course-title {
+  background-color: #383838;
+  padding: 20px 15px; /* Внутренние отступы */
+  font-size: 1.5rem; /* ~24px */
+  font-weight: 500;
+  color: white;
+  text-align: center;
+}
+
+/* Добавляем padding к .modules */
+.modules {
+  padding: 20px 0; /* Внутренние отступы */
+}
+
+/* Стили для .module */
+.module {
+  margin-bottom: 10px; /* Отступ между модулями */
+}
+
+/* Добавляем padding к .module-title */
+.module-title {
+  font-size: 1rem; /* ~16px */
+  font-weight: bold;
+  color: white;
+  padding: 10px 15px;
+}
+
+/* Стили для .lectures */
+.lectures {
+  /* Убираем padding */
+}
+
+/* Стили для .lecture */
+.lecture {
+  padding: 10px 20px; /* Внутренние отступы */
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Отсутствие отступов между лекциями */
+.lecture + .lecture {
+  margin-top: 0;
+}
+
+/* Ховер эффект */
+.lecture:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Выбранная лекция */
+.lecture.selected {
+  background-color: #ff7a00;
+}
+
+/* Стили для скроллбара */
+.sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Отступы для скроллбара */
+.sidebar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}
+
+.menu-button {
+  left: 15px;
+  right: 15px;
+  height: max-content;
+  padding: 25px 45px;
+  background: $main-color;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 85%;
+  }
+  display: none;
+  position: fixed;
+  top: 90px; /* Высота шапки + отступ */
+  z-index: 999;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 100%;
+    top: 70px;
+    bottom: 0;
+    z-index: 1000;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .menu-button {
+    display: block;
+  }
+}

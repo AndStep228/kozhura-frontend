@@ -1,6 +1,8 @@
 .my-course__block {
   display: grid;
   grid-auto-flow: row;
+  grid-auto-rows: max-content;
+
   gap: 20px;
   overflow-y: scroll;
   padding: 0 25px 0 0;
@@ -50,7 +52,7 @@
   color: #fff;
 
   display: grid;
-  grid-template-columns: 0.7fr 1fr;
+  grid-template-columns: 1fr 0.3fr;
   gap: 0 20px;
 
   img {
@@ -66,17 +68,14 @@
 
 .my-course__detail {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
   justify-self: flex-end;
 
   grid-row: 1/ 3;
-  grid-column: 2;
 }
 
 .detail__item {
   background: #fff;
+  display: grid;
   border-radius: 20px;
   width: 100%;
   height: 194px;
@@ -97,6 +96,7 @@
   h2 {
     color: #414141;
     font-weight: 500;
+    align-self: flex-end;
   }
 }
 

@@ -34,6 +34,11 @@ export default function PartnerItem(props) {
     visible: { opacity: 1, x: 0 },
   };
 
+  const variantsXPlus = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
   const variantsYMinus = {
     hidden: { opacity: 0, y: -50 },
     visible: { opacity: 1, y: 0 },
@@ -71,24 +76,47 @@ export default function PartnerItem(props) {
 
   // Компонент для отображения промо блока с анимацией
   const Promo = (
-    <motion.div
-      className="partners__promo"
-      variants={variantsXMinus}
-      initial="hidden"
-      whileInView="visible"
-      transition={{ duration: 0.6, ease: "easeInOut", delay: 0 }} // Первая задержка
-    >
-      <img src={PartnerImg} alt={PartnerImgAlt} />
-      <motion.div
-        className="promo__video"
-        variants={variantsXMinus}
-        initial="hidden"
-        whileInView="visible"
-        transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }} // Вторая задержка
-      >
-        <YtVideo videoLink={PartnerVideoLink} />
-      </motion.div>
-    </motion.div>
+    <>
+      {LeftFlow ? (
+        <motion.div
+          className="partners__promo"
+          variants={variantsXPlus}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, ease: "easeInOut", delay: 0 }} // Первая задержка
+        >
+          <img src={PartnerImg} alt={PartnerImgAlt} />
+          <motion.div
+            className="promo__video"
+            variants={variantsXPlus}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }} // Вторая задержка
+          >
+            <YtVideo videoLink={PartnerVideoLink} />
+          </motion.div>
+        </motion.div>
+      ) : (
+        <motion.div
+          className="partners__promo"
+          variants={variantsXMinus}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.6, ease: "easeInOut", delay: 0 }} // Первая задержка
+        >
+          <img src={PartnerImg} alt={PartnerImgAlt} />
+          <motion.div
+            className="promo__video"
+            variants={variantsXMinus}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }} // Вторая задержка
+          >
+            <YtVideo videoLink={PartnerVideoLink} />
+          </motion.div>
+        </motion.div>
+      )}
+    </>
   );
 
   // Компонент для отображения информационного блока с анимацией
